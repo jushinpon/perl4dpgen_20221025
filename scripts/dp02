@@ -1,0 +1,757 @@
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N2
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N25
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N154
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N570747
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N672233
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N754514
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N999498
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N1061298
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N1080711
+#iteration for NVT: 0, temperature: 300 K, step No:3000, structure: N1176403
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N2
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N25
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N154
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N570747
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N672233
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N754514
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N999498
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N1061298
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N1080711
+#iteration for NVT: 1, temperature: 300 K, step No:6000, structure: N1176403
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N2
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N2
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N25
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N25
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N154
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N154
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N570747
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N570747
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N672233
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N672233
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N754514
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N754514
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N999498
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N999498
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N1061298
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N1061298
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N1080711
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N1080711
+#iteration for NVT: 2, temperature: 1150 K, step No:3000, structure: N1176403
+#iteration for NVT: 2, temperature: 2000 K, step No:3000, structure: N1176403
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N2
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N2
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N25
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N25
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N154
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N154
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N570747
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N570747
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N672233
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N672233
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N754514
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N754514
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N999498
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N999498
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N1061298
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N1061298
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N1080711
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N1080711
+#iteration for NVT: 3, temperature: 1150 K, step No:6000, structure: N1176403
+#iteration for NVT: 3, temperature: 2000 K, step No:6000, structure: N1176403
+
+
+#***Doing initial npy convertion
+Current calculation type: relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+Current calculation type: vc-relax, keyword: "End of BFGS Geometry Optimization" 
+Current calculation type: vc-relax
+#***Doing initial deepMD training
+Submitted batch job 79260
+Submitted batch job 79261
+Submitted batch job 79263
+Submitted batch job 79262
+
+
+#Beginning dp train while loop at initial dp train.
+graph01 dp train process hasn't done
+graph02 dp train process hasn't done
+graph03 dp train process hasn't done
+graph04 dp train process hasn't done
+
+****Doing while loop times for dp train: 10 at initial dp train
+****Elapsed times: 10 min.
+total dp trian process number: 4
+Current number with dp trian process done: 0 from 4 jobs
+
+graph01 dp train process hasn't done
+graph02 dp train process hasn't done
+graph03 dp train process hasn't done
+graph04 dp train process hasn't done
+
+****Doing while loop times for dp train: 20 at initial dp train
+****Elapsed times: 20 min.
+total dp trian process number: 4
+Current number with dp trian process done: 0 from 4 jobs
+
+
+#End of dp train while loop after 29 min at initial dp train.
+
+making plots for checking training results before iteration loop
+rm: cannot remove './lcurve.out': No such file or directory
+rm: cannot remove './temp.*.out': No such file or directory
+rm: cannot remove './tempmod.*.out': No such file or directory
+WARNING:tensorflow:From /opt/anaconda3/envs/deepmd-cpu/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:root:Environment variable KMP_BLOCKTIME is empty. Use the default value 0
+WARNING:root:Environment variable KMP_AFFINITY is empty. Use the default value granularity=fine,verbose,compact,1,0
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1061298
+OMP: Info #155: KMP_AFFINITY: Initial OS proc set respected: 0-5
+OMP: Info #216: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #157: KMP_AFFINITY: 6 available OS procs
+OMP: Info #158: KMP_AFFINITY: Uniform topology
+OMP: Info #287: KMP_AFFINITY: topology layer "LL cache" is equivalent to "socket".
+OMP: Info #192: KMP_AFFINITY: 1 socket x 6 cores/socket x 1 thread/core (6 total cores)
+OMP: Info #218: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #172: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 3 maps to socket 0 core 4 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 4 maps to socket 0 core 5 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 5 maps to socket 0 core 6 thread 0 
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319810 thread 1 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319812 thread 2 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319813 thread 3 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319814 thread 4 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319815 thread 5 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319816 thread 6 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 9.958838e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 4.979419e-05 eV
+DEEPMD INFO    Force  RMSE        : 1.069654e-05 eV/A
+DEEPMD INFO    Virial RMSE        : 4.510630e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.255315e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1176403
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319809 thread 7 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319817 thread 8 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319818 thread 9 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319819 thread 10 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319820 thread 11 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 319795 tid 319821 thread 12 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 5.286082e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.321520e-04 eV
+DEEPMD INFO    Force  RMSE        : 7.020177e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 8.587077e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.146769e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N25
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.987927e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.484909e-03 eV
+DEEPMD INFO    Force  RMSE        : 8.577673e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.755462e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.694328e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N570747
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 3.973492e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 9.933731e-04 eV
+DEEPMD INFO    Force  RMSE        : 7.139730e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 6.047596e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.511899e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N754514
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.426430e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.213215e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.659196e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.605994e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.802997e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1080711
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 5.455203e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 5.455203e-05 eV
+DEEPMD INFO    Force  RMSE        : 1.336549e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 2.627560e-01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.627560e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N2
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.318220e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.159110e-02 eV
+DEEPMD INFO    Force  RMSE        : 6.868248e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 4.896002e-03 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.448001e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N154
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.004445e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.505556e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.698551e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.844119e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.805148e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N672233
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.039050e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 5.097625e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.342521e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 7.916911e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.979228e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N999498
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.408873e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.522182e-06 eV
+DEEPMD INFO    Force  RMSE        : 5.078417e-05 eV/A
+DEEPMD INFO    Virial RMSE        : 7.001465e-05 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.750366e-05 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ----------weighted average of errors----------- 
+DEEPMD INFO    # number of systems : 10
+DEEPMD INFO    Energy RMSE/Natoms : 4.169540e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.130246e-02 eV/A
+DEEPMD INFO    Virial RMSE/Natoms : 1.629856e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+WARNING:tensorflow:From /opt/anaconda3/envs/deepmd-cpu/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:root:Environment variable KMP_BLOCKTIME is empty. Use the default value 0
+WARNING:root:Environment variable KMP_AFFINITY is empty. Use the default value granularity=fine,verbose,compact,1,0
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1061298
+OMP: Info #155: KMP_AFFINITY: Initial OS proc set respected: 0-5
+OMP: Info #216: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #157: KMP_AFFINITY: 6 available OS procs
+OMP: Info #158: KMP_AFFINITY: Uniform topology
+OMP: Info #287: KMP_AFFINITY: topology layer "LL cache" is equivalent to "socket".
+OMP: Info #192: KMP_AFFINITY: 1 socket x 6 cores/socket x 1 thread/core (6 total cores)
+OMP: Info #218: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #172: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 3 maps to socket 0 core 4 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 4 maps to socket 0 core 5 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 5 maps to socket 0 core 6 thread 0 
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319980 thread 1 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319988 thread 2 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319989 thread 3 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319990 thread 4 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319991 thread 5 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319992 thread 6 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 6.839385e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.419693e-05 eV
+DEEPMD INFO    Force  RMSE        : 1.248131e-05 eV/A
+DEEPMD INFO    Virial RMSE        : 4.402591e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.201296e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1176403
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319979 thread 7 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319995 thread 10 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319994 thread 9 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319993 thread 8 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319996 thread 11 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 319961 tid 319997 thread 12 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.645082e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.161271e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.926733e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 8.591377e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.147844e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N25
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.017579e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.521974e-03 eV
+DEEPMD INFO    Force  RMSE        : 8.676977e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.740856e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.676070e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N570747
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.121754e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.030438e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.238881e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 6.040556e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.510139e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N754514
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.746904e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.373452e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.722448e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.604556e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.802278e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1080711
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.735832e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.735832e-06 eV
+DEEPMD INFO    Force  RMSE        : 1.336848e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 2.626007e-01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.626007e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N2
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.310814e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.155407e-02 eV
+DEEPMD INFO    Force  RMSE        : 6.999948e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 4.979890e-03 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.489945e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N154
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.034098e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.542623e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.794927e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.829843e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.787304e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N672233
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.024231e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 5.060578e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.461334e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 7.907940e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.976985e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N999498
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.561101e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.140275e-05 eV
+DEEPMD INFO    Force  RMSE        : 1.385631e-05 eV/A
+DEEPMD INFO    Virial RMSE        : 8.068086e-05 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.017021e-05 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ----------weighted average of errors----------- 
+DEEPMD INFO    # number of systems : 10
+DEEPMD INFO    Energy RMSE/Natoms : 4.160098e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.132235e-02 eV/A
+DEEPMD INFO    Virial RMSE/Natoms : 1.621786e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+WARNING:tensorflow:From /opt/anaconda3/envs/deepmd-cpu/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:root:Environment variable KMP_BLOCKTIME is empty. Use the default value 0
+WARNING:root:Environment variable KMP_AFFINITY is empty. Use the default value granularity=fine,verbose,compact,1,0
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1061298
+OMP: Info #155: KMP_AFFINITY: Initial OS proc set respected: 0-5
+OMP: Info #216: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #157: KMP_AFFINITY: 6 available OS procs
+OMP: Info #158: KMP_AFFINITY: Uniform topology
+OMP: Info #287: KMP_AFFINITY: topology layer "LL cache" is equivalent to "socket".
+OMP: Info #192: KMP_AFFINITY: 1 socket x 6 cores/socket x 1 thread/core (6 total cores)
+OMP: Info #218: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #172: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 3 maps to socket 0 core 4 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 4 maps to socket 0 core 5 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 5 maps to socket 0 core 6 thread 0 
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320147 thread 1 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320149 thread 2 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320150 thread 3 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320151 thread 4 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320152 thread 5 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320153 thread 6 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.521768e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.260884e-04 eV
+DEEPMD INFO    Force  RMSE        : 9.958583e-06 eV/A
+DEEPMD INFO    Virial RMSE        : 4.558527e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.279264e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1176403
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320146 thread 7 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320154 thread 8 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320155 thread 9 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320156 thread 10 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320157 thread 11 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 320128 tid 320158 thread 12 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.705314e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 4.263284e-05 eV
+DEEPMD INFO    Force  RMSE        : 7.021302e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 8.586980e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.146745e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N25
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.066647e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.583308e-03 eV
+DEEPMD INFO    Force  RMSE        : 8.631064e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.747609e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.684511e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N570747
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.367091e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.091773e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.193070e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 6.043808e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.510952e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N754514
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 7.922013e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.961007e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.599417e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.607435e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.803717e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1080711
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.056925e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.056925e-04 eV
+DEEPMD INFO    Force  RMSE        : 1.336976e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 2.625347e-01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.625347e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N2
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.298544e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.149272e-02 eV
+DEEPMD INFO    Force  RMSE        : 6.932957e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 4.937219e-03 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.468610e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N154
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.083165e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.603956e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.750734e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.836383e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.795479e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N672233
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.999694e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 4.999235e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.402735e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 7.912362e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.978091e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N999498
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.817965e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.204491e-04 eV
+DEEPMD INFO    Force  RMSE        : 1.182963e-04 eV/A
+DEEPMD INFO    Virial RMSE        : 4.967456e-05 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.241864e-05 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ----------weighted average of errors----------- 
+DEEPMD INFO    # number of systems : 10
+DEEPMD INFO    Energy RMSE/Natoms : 4.146339e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.132523e-02 eV/A
+DEEPMD INFO    Virial RMSE/Natoms : 1.632654e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+WARNING:tensorflow:From /opt/anaconda3/envs/deepmd-cpu/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:root:Environment variable KMP_BLOCKTIME is empty. Use the default value 0
+WARNING:root:Environment variable KMP_AFFINITY is empty. Use the default value granularity=fine,verbose,compact,1,0
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1061298
+OMP: Info #155: KMP_AFFINITY: Initial OS proc set respected: 0-5
+OMP: Info #216: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #157: KMP_AFFINITY: 6 available OS procs
+OMP: Info #158: KMP_AFFINITY: Uniform topology
+OMP: Info #287: KMP_AFFINITY: topology layer "LL cache" is equivalent to "socket".
+OMP: Info #192: KMP_AFFINITY: 1 socket x 6 cores/socket x 1 thread/core (6 total cores)
+OMP: Info #218: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #172: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 3 maps to socket 0 core 4 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 4 maps to socket 0 core 5 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 5 maps to socket 0 core 6 thread 0 
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320251 thread 1 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320253 thread 2 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320255 thread 4 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320254 thread 3 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320256 thread 5 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320257 thread 6 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.321554e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.160777e-05 eV
+DEEPMD INFO    Force  RMSE        : 9.817635e-06 eV/A
+DEEPMD INFO    Virial RMSE        : 4.567992e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.283996e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1176403
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 5.015452e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.253863e-04 eV
+DEEPMD INFO    Force  RMSE        : 7.084251e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 8.584058e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.146015e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N25
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320250 thread 7 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320258 thread 8 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320260 thread 10 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320259 thread 9 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320261 thread 11 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 320232 tid 320262 thread 12 bound to OS proc set 0
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.901975e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.377469e-03 eV
+DEEPMD INFO    Force  RMSE        : 8.716562e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.735032e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.668790e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N570747
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 3.543733e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 8.859334e-04 eV
+DEEPMD INFO    Force  RMSE        : 7.278667e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 6.037732e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.509433e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N754514
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 4.562173e-04 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.281087e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.684643e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.605421e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.802711e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N1080711
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.147827e-03 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.147827e-04 eV
+DEEPMD INFO    Force  RMSE        : 1.336362e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 2.628530e-01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.628530e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N2
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.339716e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 1.169858e-02 eV
+DEEPMD INFO    Force  RMSE        : 7.002258e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 4.981361e-03 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.490681e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N154
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 1.918495e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.398119e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.836401e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 3.823655e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.779569e-03 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N672233
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 2.082035e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 5.205088e-03 eV
+DEEPMD INFO    Force  RMSE        : 7.478513e-03 eV/A
+DEEPMD INFO    Virial RMSE        : 7.906644e-02 eV
+DEEPMD INFO    Virial RMSE/Natoms : 1.976661e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : /home/zhao/DPMD_test/Perl4dpgen_New/matplot/all_npy/initial/N999498
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 9.441946e-05 eV
+DEEPMD INFO    Energy RMSE/Natoms : 2.360487e-05 eV
+DEEPMD INFO    Force  RMSE        : 2.144537e-05 eV/A
+DEEPMD INFO    Virial RMSE        : 1.161097e-04 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.902743e-05 eV
+DEEPMD INFO    # ----------------------------------------------- 
+DEEPMD INFO    # ----------weighted average of errors----------- 
+DEEPMD INFO    # number of systems : 10
+DEEPMD INFO    Energy RMSE/Natoms : 4.197851e-03 eV
+DEEPMD INFO    Force  RMSE        : 6.130386e-02 eV/A
+DEEPMD INFO    Virial RMSE/Natoms : 1.633248e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+
+
+#****Main iteration begins****#
+
+#*** DPGEN ITERATION: 0
+#Doing lmp_label at iteration 0
+#The following thermal conditions are considered for lmp label at iter000:
+#T: 300, P: 0, run_step:3000 for structure: N2
+#T: 300, P: 0, run_step:3000 for structure: N25
+#T: 300, P: 0, run_step:3000 for structure: N154
+#T: 300, P: 0, run_step:3000 for structure: N570747
+#T: 300, P: 0, run_step:3000 for structure: N672233
+#T: 300, P: 0, run_step:3000 for structure: N754514
+#T: 300, P: 0, run_step:3000 for structure: N1176403
+#T: 300, P: 0, run_step:3000 for structure: N1080711
+#T: 300, P: 0, run_step:3000 for structure: N1061298
+#T: 300, P: 0, run_step:3000 for structure: N999498
+Submitted batch job 79272
+Submitted batch job 79273
+Submitted batch job 79274
+Submitted batch job 79275
+Submitted batch job 79276
+Submitted batch job 79278
+Submitted batch job 79277
+Submitted batch job 79279
+Submitted batch job 79280
+Submitted batch job 79281
+
+#Beginning lmp label while loop at iter000
+
+****Elapsed times for all lmp jobs done: 2 min.
+
+***no labelled structures in /home/zhao/DPMD_test/Perl4dpgen_New/lmp_label/T300-P0-R3000-N2 at iteration 0
+$labelorNot: 1 at iter_000 (0 for none after lmp labeling)
+
+#Doing DFT_SCF at iteration 0
+Submitted batch job 79282
+Submitted batch job 79283
+Submitted batch job 79284
+Submitted batch job 79285
+Submitted batch job 79286
+Submitted batch job 79287
+Submitted batch job 79288
+Submitted batch job 79289
+Submitted batch job 79290
+Submitted batch job 79291
+Submitted batch job 79292
+Submitted batch job 79293
+Submitted batch job 79294
+Submitted batch job 79295
+Submitted batch job 79296
+Submitted batch job 79297
+Submitted batch job 79298
+Submitted batch job 79299
+Submitted batch job 79300
+Submitted batch job 79301
+Submitted batch job 79302
+Submitted batch job 79303
+Submitted batch job 79304
+Submitted batch job 79305
+Submitted batch job 79306
+Submitted batch job 79307
+Submitted batch job 79308
+Submitted batch job 79309
+
+
+#Beginning DFT SCF while loop for the total 28 scf jobs at iter000
+
+
+#####Check all scf calculation results for iter000:
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N672233/lmp_1500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N672233/lmp_2000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N672233/lmp_2500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N672233/lmp_3000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N570747/lmp_1500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N570747/lmp_2500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N154/lmp_1500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N154/lmp_2000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N154/lmp_2500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N25/lmp_500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N25/lmp_1000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N754514/lmp_0 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N754514/lmp_500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N754514/lmp_1000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_0 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_1000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_2000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_2500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1080711/lmp_0 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_0 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_1000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_1500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_2000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_2500 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1061298/lmp_3000 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N999498/lmp_0 is good!!!
+dft scf calculation in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N999498/lmp_2000 is good!!!
+#End of DFT SCF while loop after 5 min. 25 Good DFT SCF jobs from the total 28 jobs at iter000
+
+#final convergedNo after DFT_SCF: 25
+#Doing SCF output to npy files at iteration 0
+#scf of sout file in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N154/lmp_1500 has problem!!!
+#scf of sout file in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_500 has problem!!!
+#scf of sout file in /home/zhao/DPMD_test/Perl4dpgen_New/DFT_output/T300-P0-R3000-N1176403/lmp_1000 has problem!!!
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+Current calculation type: scf
+#Doing dp train at iteration 0
+
+Submitted batch job 79310
+Submitted batch job 79312
+Submitted batch job 79311
+Submitted batch job 79313
