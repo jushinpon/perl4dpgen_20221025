@@ -1,0 +1,42 @@
+modify .bashrc to export conda path
+put initial sout for the first training process
+for all XX.sh files, you need to check the paths of all executables and slurm partitions
+
+usage:
+use the following command in scripts folder
+perl main.pl > ../dpgen08.log &
+the output file dpgen08.log means the eighth times for dpgen processes (all_npy01..all_npy07 you will have
+)
+##########################################################################################
+#!!!!!!!!! VERY IMPORTANT. If you don't have proper settings for jobtype and begIter , all npy files could be gone. 
+##########################################################################################
+###before you conduct these scripts, you need to set proper settings in all_settings.pm especially for the fowllowing two:
+$system_setting{jobtype} = "XX";
+$system_setting{begIter} = "XX";
+
+for jobtype hash, the following three can be used: 
+1. new: a brand new job, you need to remove all "old all_npy folders"
+2. dpgen_again: do dpgen using npy files from previous dpgen process you have done
+3. rerun: for a broken job (like a blackout),you need to check if a iter (the last one when your job was terminated) has completed. if not, set the iter No ("$begIter" in main.pl) to be this one and remove this folder. If yes, you need to set $begIter to be the next iter no. 
+
+for begIter hash, the following two should be considered: 
+1. 0: a brand new job or dpgen_again
+2. for rerun,you need to check if a iter (the last one when your job was terminated) has completed. if not, set the iter No ($system_setting{begIter}) to be this one and remove this folder. If yes, you need to set $begIter to be the next iter no. 
+
+when you set dpgen_again, rename your all_npy folder to be all_npyXX (XX are 01, 02,... You can redo dpgen as many times as you need) for using npy files you have got by previous dpgen jobs
+
+####################################################################
+
+the following is under construction!!!
+
+folders:
+1. initial: put data (optimized cell) for lammps,type.raw,sout file (DFT output), masses.dat (each row for one element, for lmp) and exp and dft binding energy file
+elements.dat (for DFT input, converting type.raw to element name). Format example, Al Cu Mo ... in a row
+to establish a folder name the same as in the dpgen.json
+2. dp_ 
+3. you may modify slurm_dp.sh in the scripts folder for your machines (partition...), but you need to set anaconda base env first.
+inform the administrator to put anaconda path in /etc/bashrc for all users.
+
+
+ main.pl:
+ my $initial_trainOnly = "yes";#if "yes", only conduct the initial training

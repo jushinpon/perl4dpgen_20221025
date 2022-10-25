@@ -1,0 +1,12 @@
+*.log
+nohup.out
+/all_npy*
+/DFT_output
+/dp_train*
+/lmp_label
+/initial
+/matplot
+/standalone_dptrain
+*.txt
+test*.pl
+test*
