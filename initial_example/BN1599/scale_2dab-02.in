@@ -1,0 +1,46 @@
+&CONTROL
+calculation = "scf"
+etot_conv_thr =   1.0000000000d-05
+forc_conv_thr =   1.0000000000d-04
+prefix = 'aiida'
+pseudo_dir = '/opt/QEpot/SSSP_precision_pseudos/'
+tprnfor = .true.
+tstress = .true.
+verbosity = 'high'
+disk_io = 'none'
+/
+&SYSTEM
+degauss =   2.2049585400d-02
+ecutrho = 4.4000000000d+02
+ecutwfc = 8.0000000000d+01
+ibrav = 0
+nat = 8
+nosym = .false.
+ntyp = 2
+occupations = 'smearing'
+smearing = 'cold'
+/
+&ELECTRONS
+conv_thr =   2.0000000000d-10
+electron_maxstep = 80
+mixing_beta =   4.0000000000d-01
+/
+K_POINTS {automatic}
+9 5 4 0 0 0
+ATOMIC_SPECIES
+B  10.81  B_pbe_v1.01.uspp.F.UPF
+N  14.007  N.oncvpsp.upf
+ATOMIC_POSITIONS {angstrom}
+B 6.558995042341 0.000594329527 0.010429777318
+B 2.560037433224 0.486154770781 2.525290269165
+B 10.980154729818 2.105312439905 2.729686494723
+B 6.754343578746 1.289880953891 2.214856869169
+N 12.43771879367 2.384615466683 2.894487133211
+N 6.409521166582 1.22947320912 0.695072212051
+N 8.206923231527 1.57389706638 2.451611532298
+N 3.972936881924 0.762567237312 2.674821855568
+CELL_PARAMETERS {angstrom}
+6.562471666667 0 0
+-0.464870702947 2.425963079489 0
+0.039120613534 0.007496415451 4.398319637242
+!End
