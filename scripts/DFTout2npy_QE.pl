@@ -122,7 +122,7 @@ for my $id (0..$#out){
 	chomp $1;
 	my $cal_type1 = $1;
 	die "no calculation type in $dftin[$id]\n" unless($cal_type);
-    die "the calculation types in all in files are not the same! the same calculation types should be used under a folder\n",
+    die "the calculation types of all input files are not the same! the same calculation types should be used in a folder\n",
 	if($cal_type1 ne $cal_type);
 
 	open my $all ,"< $out[$id]";

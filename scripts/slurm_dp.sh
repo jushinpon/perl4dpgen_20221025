@@ -2,12 +2,12 @@
 #sed_anchor01
 #SBATCH --output=dp01.out
 #SBATCH --job-name=dp01
-##SBATCH --nodes=1
-##SBATCH --ntasks-per-node=8
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
 #SBATCH --partition=debug
 ##SBATCH --reservation=GPU_test
 ##SBATCH --exclude=node18,node20
-#SBATCH --gres=gpu:0 
+##SBATCH --gres=gpu:0 
 source activate deepmd-cpu
 
 threads=`lscpu|grep "^CPU(s):" | sed 's/^CPU(s): *//g'`

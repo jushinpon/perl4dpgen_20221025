@@ -10,18 +10,20 @@ package all_settings;
 use strict;
 use warnings;
 use Cwd;
+use POSIX;
+
 my $currentPath = getcwd();# dir for all scripts
 chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 my $NVT4str = "yes";
-my @allNVTstru = ("BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
+my @allNVTstru = ("BN344","BN534","BN984","BN1599","BN2653","BN7991");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
 # should have the same names as in the initial folder
 my $NPT4str = "yes";
-my @allNPTstru = ("BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");
+my @allNPTstru = ("BN344","BN534","BN984","BN1599","BN2653","BN7991");
 my @allPress = (1,10000);#unit:bar,the pressures your want to use for labelling
 my @allStep = (3000,6000);#time step number, should be larger than 500 (default output_freq)
-my @allIniStr =  ("BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
+my @allIniStr =  ("BN344","BN534","BN984","BN1599","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
 #my @allIniStr =  ("N2","N2SCF","N25","N154","N568584","N570747","N672233","N754514","N999498","N1080711","N1176403","B160","B161","B22046","B541848","B570316","B570602","B632401","B1193675","B1198656","B1202723","B1228790","BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
 #"bcc_bulk",
 my %system_setting;
@@ -51,15 +53,19 @@ $dptrain_setting{type_map} = [("B","N")];# json template file
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{json_outdir} = "$mainPath/dp_train";
 $dptrain_setting{working_dir} = "$mainPath/dp_train";
-$dptrain_setting{trainstep} = 2000;#you may set a smaller train step for the first several dpgen processes
+$dptrain_setting{trainstep} = 20000;#you may set a smaller train step for the first several dpgen processes
 $dptrain_setting{compresstrainstep} = 80000;
 $dptrain_setting{final_trainstep} = 200000;
 $dptrain_setting{final_compresstrainstep} = 400000;
-$dptrain_setting{decay_steps} = 1000;
-$dptrain_setting{final_decay_steps} = 5000;
-$dptrain_setting{disp_freq} = 1000;
-$dptrain_setting{save_freq} = 1000;
+#lr(t) = start_lr * decay_rate ^ ( t / decay_steps ),default decay_rate:0.95
 $dptrain_setting{start_lr} = 0.001;
+my $t1 = log(3.5e-08/$dptrain_setting{start_lr});
+my $t2 = log(0.95)*$dptrain_setting{trainstep};
+my $dcstep = floor($t2/$t1);
+$dptrain_setting{decay_steps} = $dcstep;
+$dptrain_setting{final_decay_steps} = 5000;
+$dptrain_setting{disp_freq} = 100;
+$dptrain_setting{save_freq} = 100;
 my $temp =$dptrain_setting{start_lr} * 0.95**( $dptrain_setting{trainstep}/$dptrain_setting{decay_steps} );
 $dptrain_setting{start_lr4compress} = $temp;
 $dptrain_setting{rcut} = 8.00000000000001;

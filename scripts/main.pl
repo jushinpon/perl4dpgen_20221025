@@ -214,6 +214,10 @@ else{
 `rm -rf $mainPath/matplot`;
 `mkdir -p $mainPath/matplot`;
 
+#collect all raw data from dp test
+`rm -rf $mainPath/matplot_data`;
+`mkdir -p $mainPath/matplot_data`;
+
 # training on all npy files in all_npy* folders
 print "#***Doing initial deepMD training\n";
 

@@ -39,9 +39,13 @@ for (1..$trainNo){
     `rm ./temp.*.out`;#remove old dp test output files in current dir 
     `rm ./tempmod.*.out`;#remove old dp test output files in current dir 
     `cp  $mainPath/dp_train/graph$temp/lcurve.out ./`;#for loss profiles
+    `cp  $mainPath/dp_train/graph$temp/lcurve.out ../matplot_data/lcurve_$iter-graph$temp.out`;#for raw data
     #the following for check pred. and ref. data distributions for energy, force, and virial 
     system("source activate deepmd-cpu;dp test -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $mainPath/matplot -d ./temp.out;conda deactivate");
 # get atom number for normalizing energy
+    `cp  ./temp.e.out ../matplot_data/Oritemp.e_$iter-graph$temp.out`;#for raw data
+    `cp  ./temp.f.out ../matplot_data/temp.f_$iter-graph$temp.out`;#for raw data
+    `cp  ./temp.v.out ../matplot_data/temp.v_$iter-graph$temp.out`;#for raw data
 
     `mv ./temp.e.out ./tempmod.e.out`;# for the following touch temp.e.out
     my @temp = `grep "#" ./tempmod.e.out|awk '{print \$2}'`;
@@ -88,6 +92,8 @@ for (1..$trainNo){
         #chmop @temp;
         `echo "$temp[0] $temp[1]" >> ./temp.e.out`;
     }
+    `cp  ./temp.e.out ../matplot_data/itemp.e_$iter-graph$temp.out`;#for raw data
+
 # end of energy normalization    
     system ("python dp_plots.py");
     sleep(1);

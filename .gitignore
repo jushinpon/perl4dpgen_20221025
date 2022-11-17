@@ -6,6 +6,7 @@ nohup.out
 /lmp_label
 /initial
 /matplot
+/matplot_data
 /standalone_dptrain
 *.txt
 test*.pl
