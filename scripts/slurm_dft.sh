@@ -3,7 +3,7 @@
 #SBATCH --output=dp01.out
 #SBATCH --job-name=dp01
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-node=12
 #SBATCH --partition=debug
 ##SBATCH --exclude=node18,node20
 export LD_LIBRARY_PATH=/opt/mpich-3.4.2/lib:$LD_LIBRARY_PATH

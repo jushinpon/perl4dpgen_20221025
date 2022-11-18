@@ -5,6 +5,7 @@ nohup perl standalone_dptrain.pl > ../standalone.log &
 For your own system, you need to check the following:
 1.You need to check your deepmd-kit path (dp train)  and the sbatch file for slurm job submission
 2.$dptrain_setting{npy_dir}
+3. all setting parameters
 
 =cut
 use warnings;
@@ -30,10 +31,14 @@ $dptrain_setting{json_script} = "$currentPath/template.json";# json template fil
 $dptrain_setting{work_dir} = "$mainPath/$ref_dir";#main dir for standalone dp train
 $dptrain_setting{npy_dir} = "$mainPath/all_npy*";#you may use your dir, under which all npy files are included.
 $dptrain_setting{trainstep} = 200000;#you may set a smaller train step for the first several dpgen processes
-$dptrain_setting{decay_steps} = 1000;
+$dptrain_setting{start_lr} = 0.001;
+my $t1 = log(3.5e-08/$dptrain_setting{start_lr});
+my $t2 = log(0.95)*$dptrain_setting{trainstep};
+my $dcstep = floor($t2/$t1);
+$dptrain_setting{decay_steps} = $dcstep;
+
 $dptrain_setting{disp_freq} = 1000;
 $dptrain_setting{save_freq} = 1000;
-$dptrain_setting{start_lr} = 0.001;
 $dptrain_setting{rcut} = 8.000000000001;
 $dptrain_setting{rcut_smth} = 2.00000001;
 $dptrain_setting{descriptor_type} = "se_e2_a";

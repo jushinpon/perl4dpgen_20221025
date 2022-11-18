@@ -3,7 +3,7 @@
 #SBATCH --output=dp01.out
 #SBATCH --job-name=dp01
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-node=12
 #SBATCH --partition=debug
 ##SBATCH --reservation=GPU_test
 ##SBATCH --exclude=node18,node20
