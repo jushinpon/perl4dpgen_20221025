@@ -21,7 +21,7 @@ require './lmp_label.pl';
 require './dp_train.pl';
 require './matplot.pl';
 #my $onlyfinal_dptrain = "no";#yes or no (not work currently)
-my $initial_trainOnly = "no";#if "yes", only conduct the initial training
+my $initial_trainOnly = "yes";#if "yes", only conduct the initial training
 my $forkNo = 1;#modify in the future
 my $pm = Parallel::ForkManager->new("$forkNo");
 #load all settings first
@@ -258,7 +258,6 @@ print "making plots for checking training results before iteration loop\n";
 
 print "\n\n#****Main iteration begins****#\n";
 my $begIter = $system_setting{begIter};#assign correct beginning iteration number
-die "Only initial training is done! (\$initial_trainOnly = \"yes\")\n" if($initial_trainOnly eq "yes");
 
 for my $iter ($begIter..$#iteration){
     $system_setting{iter} = $iter;
@@ -271,6 +270,9 @@ for my $iter ($begIter..$#iteration){
     print "\$labelorNot: $labelorNot at $it (0 for none after lmp labeling)\n";
     next unless($labelorNot);#if nothing labelled, go to next iteration for different thermostate
     sleep(1);
+    #do lammps MD for initial training check
+    die "Only initial training is done! (\$initial_trainOnly = \"yes\")\n" if($initial_trainOnly eq "yes");
+
 #begin DFT SCF for all labelled structures by lmp
     print "\n#Doing DFT_SCF at iteration $iter\n";
     my $convergedNo = &DFT_SCF(\%system_setting,\%scf_setting,\@{$iteration[$iter]});#do DFT scf for npy files

@@ -110,7 +110,7 @@ for my $case (0..$#thermostate){# loop over all cases in an iteration
     `sed -i '/#sed_anchor01/a #SBATCH --output=$job_folder.lmpout' $slurm_outscript`;
     # #modify script name
     `sed -i '/lmp .*/d' $slurm_outscript`;
-    `sed -i '/#mpiexec_anchor/a mpiexec lmp -in lmp.in' $slurm_outscript`;
+    `sed -i '/#mpiexec_anchor/a lmp -in lmp.in' $slurm_outscript`;
 
     chdir("$lmp_outdir");
     system("sbatch ./slurm_lmp.sh");

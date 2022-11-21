@@ -97,6 +97,8 @@ box => \@braw
 
 for my $id (0..$#out){
 	chomp $id;
+		print "\$out[$id]:$out[$id]\n"; 
+
 	#loop over all sout files in the following:
 	#     number of atoms/cell      =           16
 	###******from type.raw
@@ -132,7 +134,7 @@ for my $id (0..$#out){
 	if ($cal_type eq "vc-relax" or $cal_type eq "relax"){
 		my @temp = grep m/End of BFGS Geometry Optimization/, @all;
 		chomp @temp;
-		$temp[0] =~ s/^\s+|\s+$//; 
+		$temp[0] =~ s/^\s+|\s+$//;
 		print "Current calculation type: $cal_type, keyword: \"$temp[0]\" \n";
 		die "The vc-relax (or relax) in $out[$id] hasn't been done (no 'End of BFGS Geometry Optimization')! no data can be used for npy files.
 	You need to do vc-relax (or relax) with a larger nstep value or drop this case by modifying all_setting.pm!\n" unless (@temp);
@@ -175,7 +177,6 @@ for my $id (0..$#out){
 	
 	if ($cal_type eq "vc-relax"){
        my $temp = @cellVol; 
-	print "Current calculation type: $cal_type\n";
 	die "There is no final scf in $out[$id] (after 'End of BFGS Geometry Optimization')! no data can be used for npy files.
 You need to do vc-relax, scf or drop this case by modifying all_setting.pm!\n" if ($temp != 2);
 	

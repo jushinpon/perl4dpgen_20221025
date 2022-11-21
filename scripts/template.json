@@ -1,11 +1,11 @@
 {
     "loss": {
         "start_pref_f": 1000,
-        "start_pref_e": 10,
+        "start_pref_e": 0.01,
         "limit_pref_e": 2,
-        "limit_pref_v": 2,
-        "start_pref_v": 10,
-        "limit_pref_f": 2,
+        "limit_pref_v": 0,
+        "start_pref_v": 0,
+        "limit_pref_f": 1,
         "_comment": " that's all"
     },
     "model": {
@@ -55,19 +55,19 @@
         "training_data": {
             "set_prefix": "set",
             "systems": [],
-            "batch_size": "auto"
+            "batch_size": 1
         },
          "validation_data":{
             "set_prefix": "set",
             "systems":		[],
-            "batch_size":	"auto",
+            "batch_size":	1,
             "numb_btch":	3,
             "_comment":		"that's all"
         }
 
     },
     "learning_rate": {
-        "stop_lr": 3.51e-8,
+        "stop_lr": 3.0e-8,
         "_comment": "that's all",
         "decay_steps": 2000,
         "start_lr": 0.001        
