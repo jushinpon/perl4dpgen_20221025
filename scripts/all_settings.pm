@@ -46,7 +46,7 @@ $system_setting{T_hi} = 2000;#the higest temperature for lammps
 $system_setting{T_lo} = 300;#the lowest temperature for lammps
 $system_setting{T_incNo} = 2;#total increment number from T_lo to T_hi,
 #the total temperature number considered is the above value + 1;
-$system_setting{T_No} = 1;#how many temperatures you want to consider within a temperature range
+$system_setting{T_No} = 2;#how many temperatures you want to consider within a temperature range, at lease 2
 
 my %dptrain_setting; 
 $dptrain_setting{type_map} = [("Fe","Na","O","P")];# json template file
@@ -68,7 +68,7 @@ $dptrain_setting{disp_freq} = 200;
 $dptrain_setting{save_freq} = 200;
 my $temp =$dptrain_setting{start_lr} * 0.95**( $dptrain_setting{trainstep}/$dptrain_setting{decay_steps} );
 $dptrain_setting{start_lr4compress} = $temp;
-$dptrain_setting{rcut} = 6.00000000000001;
+$dptrain_setting{rcut} = 8.00000000000001;
 $dptrain_setting{rcut_smth} = 2.0000000001;
 $dptrain_setting{descriptor_type} = "se_a";
 $dptrain_setting{save_ckpt} = "model.ckpt";
