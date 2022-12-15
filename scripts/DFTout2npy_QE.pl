@@ -100,6 +100,11 @@ for my $id (0..$#out){
 		print "\$out[$id]:$out[$id]\n"; 
 
 	#loop over all sout files in the following:
+	#check whether SCF problem exists!
+	chomp  $dftin[$id];
+	my @scf_problem = `grep "convergence NOT achieved after" $out[$id]`;#|grep "convergence NOT achieved after"`;	
+	die "You have SCF convergence problem in the DFT sout file, $out[$id]!!!\n" if(@scf_problem);
+
 	#     number of atoms/cell      =           16
 	###******from type.raw
 	my @natom = `cat $out[$id]|sed -n '/number of atoms\\/cell/p'|awk '{print \$5}'`;	

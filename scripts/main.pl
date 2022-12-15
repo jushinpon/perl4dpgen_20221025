@@ -272,7 +272,8 @@ for my $iter ($begIter..$#iteration){
     sleep(1);
     #do lammps MD for initial training check
     die "Only initial training is done! (\$initial_trainOnly = \"yes\")\n" if($initial_trainOnly eq "yes");
-
+print "\$initial_trainOnly:$initial_trainOnly\n";
+die;
 #begin DFT SCF for all labelled structures by lmp
     print "\n#Doing DFT_SCF at iteration $iter\n";
     my $convergedNo = &DFT_SCF(\%system_setting,\%scf_setting,\@{$iteration[$iter]});#do DFT scf for npy files
