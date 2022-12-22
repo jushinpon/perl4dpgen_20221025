@@ -41,7 +41,7 @@ for (1..$trainNo){
     `cp  $mainPath/dp_train/graph$temp/lcurve.out ./`;#for loss profiles
     `cp  $mainPath/dp_train/graph$temp/lcurve.out ../matplot_data/lcurve_$iter-graph$temp.out`;#for raw data
     #the following for check pred. and ref. data distributions for energy, force, and virial 
-    system("source activate deepmd-cpu;dp test -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $mainPath/matplot -d ./temp.out;conda deactivate");
+    system("source activate deepmd-cpu;dp test -n 2000 -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $mainPath/matplot -d ./temp.out;conda deactivate");
 # get atom number for normalizing energy
     `cp  ./temp.e.out ../matplot_data/Oritemp.e_$iter-graph$temp.out`;#for raw data
     `cp  ./temp.f.out ../matplot_data/temp.f_$iter-graph$temp.out`;#for raw data
