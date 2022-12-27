@@ -157,7 +157,8 @@ for my $T_bound (0.. $#allTemp - 1){
     my $end = $system_setting{T_No} -1;
     if($T_bound == $#allTemp - 1){$end = $system_setting{T_No}}# for the higest temperature
     for my $t (0..$end){
-        my $temp = $allTemp[$T_bound] + $t * $localTinc;
+        my $temp1 = $allTemp[$T_bound] + $t * $localTinc;
+        my $temp = int($temp1);
         push @{$Tgroup[$T_bound]},$temp;
     }    
 }
