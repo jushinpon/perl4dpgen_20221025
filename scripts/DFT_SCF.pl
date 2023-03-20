@@ -153,7 +153,12 @@ for my $dir (@labelled_dir){
             chomp @temp;
             # lmp id from 1, the following is also used for sorting
             my $id = $temp[0] - 1;
-            $dft_coors[$id] = "$elements[$id] $temp[2] $temp[3] $temp[4]";
+            my $tempx = $temp[2] - $xlo;
+            my $tempy = $temp[3] - $ylo;
+            my $tempz = $temp[4] - $zlo_bound;#zlo = zlo_bound
+            chomp ($tempx,$tempy,$tempz);
+            $dft_coors[$id] = "$elements[$id] $tempx $tempy $tempz";
+            #$dft_coors[$id] = "$elements[$id] $temp[2] $temp[3] $temp[4]";
         }
         #modify dft input after sorting
         for my $coor (reverse @dft_coors){
