@@ -33,9 +33,11 @@ my $bohr2ang3 = 0.14818471127;
 my $kbar2bar = 1000;#000.;
 my $kbar2evperang3 = 1.0/ (160.21766208*10.0);
 my $force_convert = $ry2eV / $bohr2ang;
+#print "\$sout_dir: $sout_dir\n";
 my @out = <$sout_dir/*.sout>;# all DFT output files through slurm
 die "No DFT sout file in $npy_hr->{dftsout_dir}\n" unless(@out);
 my @dftin = <$sout_dir/*.in>;# all DFT input files
+
 die "No DFT input file in $npy_hr->{dftsout_dir}\n" unless(@out);
 #prefix should be the same
 @out = sort @out;
@@ -46,6 +48,7 @@ my $inNo = @dftin;
 die "The number of QE input and sout files are not equal !!!\n" if($inNo != $outNo);
 
 for my $id (0..$#out){
+#	print "\$dftin[$id]: $dftin[$id]\n";
 	my $in = `basename $dftin[$id]`;
 	chomp $in;
 	$in =~ s/^\s+|\s+$//;
@@ -67,7 +70,8 @@ for my $id (0..$#out){
 chomp  $dftin[0];
 my @cal_type = `grep calculation $dftin[0]`;#|grep "calculation"`;	
 chomp @cal_type;
-$cal_type[0] =~ /\s*calculation\s*=\s*"(.+)"/;#must use array
+$cal_type[0] =~ /\s*calculation\s*=\s*["|'](.+)["|']/;#must use array
+#$cal_type[0] =~ /\s*calculation\s*=\s*"(.+)"/;#must use array
 chomp $1;
 my $cal_type = $1;
 die "no calculation type in $dftin[0]\n" unless($cal_type);
@@ -97,7 +101,7 @@ box => \@braw
 
 for my $id (0..$#out){
 	chomp $id;
-		print "\$out[$id]:$out[$id]\n"; 
+		print "**current file: $out[$id]\n"; 
 
 	#loop over all sout files in the following:
 	#check whether SCF problem exists!

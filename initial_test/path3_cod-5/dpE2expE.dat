@@ -1,0 +1,4 @@
+#DFT binding energy summation (eV): sum(dftBEi* atomNoi)->-1157.11110524*25
+dftBE_all = -28927.777631
+#exp binding energy summation (eV): sum(BEi* atomNoi)-> -1.113*1-4.28*4-3.43*4-2.6*16
+expBE_be = -73.553

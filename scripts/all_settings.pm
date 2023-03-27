@@ -17,13 +17,14 @@ chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 my $NVT4str = "no";
-my @allNVTstru = ("NaFePO4_mp-1192859","NaFePO4_mp-19226","NaFePO4_mp-746030","NaFePO4_mp-753672","NaFePO4_relax-00","NaFePO4_vc-00","Opt_vc-00","path2_nine-025","path2_one-025","path3_nine-025","path3_one-025","vcmd_relax-00","vcmd_vc-00","vcmd_vc-1192859");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
+my @allNVTstru = ("");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
 # should have the same names as in the initial folder
 my $NPT4str = "yes";
-my @allNPTstru = ("NaFePO4_mp-1192859","NaFePO4_mp-19226","NaFePO4_mp-746030","NaFePO4_mp-753672","NaFePO4_relax-00","NaFePO4_vc-00","Opt_vc-00","path2_nine-025","path2_one-025","path3_nine-025","path3_one-025","vcmd_relax-00","vcmd_vc-00","vcmd_vc-1192859");
-my @allPress = (1,10000);#unit:bar,the pressures your want to use for labelling
-my @allStep = (3000,6000);#time step number, should be larger than 500 (default output_freq)
-my @allIniStr =  ("NaFePO4_mp-1192859","NaFePO4_mp-19226","NaFePO4_mp-746030","NaFePO4_mp-753672","NaFePO4_relax-00","NaFePO4_vc-00","Opt_vc-00","path2_nine-025","path2_one-025","path3_nine-025","path3_one-025","vcmd_relax-00","vcmd_vc-00","vcmd_vc-1192859");#for the fisrt dp train,should include all structures for labeling
+my @allNPTstru = ("BN_mp-344","B13N2_mp-534");
+my @allPress = (0.0);#unit:bar,the pressures your want to use for labelling
+my @allStep = (3000);#time step number, should be larger than 500 (default output_freq)
+#prefixes of data and QE in files should be the same as the foldername !!!!
+my @allIniStr =  ("BN_mp-344","B13N2_mp-534","BN_mp-984","BN_mp-1599","BN_mp-2653","BN_mp-7991");#for the fisrt dp train,should include all structures for labeling
 #my @allIniStr =  ("N2","N2SCF","N25","N154","N568584","N570747","N672233","N754514","N999498","N1080711","N1176403","B160","B161","B22046","B541848","B570316","B570602","B632401","B1193675","B1198656","B1202723","B1228790","BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
 #"bcc_bulk",
 my %system_setting;
@@ -34,26 +35,26 @@ $system_setting{jobtype} = "new";#"new";#check readme
 $system_setting{begIter} = 0;#0 for $system_setting{jobtype} = "new" or "dpgen_again"
 #for rerun, check readme
 $system_setting{debug} = "yes";#no for a brand new run
-$system_setting{dft_exe} = "/opt/QEGCC_MPICH3.4.2/bin/pw.x";#not workable, you need to modify this in slurm batch and partition
-$system_setting{lmp_exe} = "/opt/lammps-mpich-3.4.2/lmp_20220302";#not workable, you need to modify this in slurm batch and partition
+$system_setting{dft_exe} = "/opt/QEGCC_MPICH4.0.3/bin/pw.x";#not workable, you need to modify this in slurm batch and partition
+$system_setting{lmp_exe} = "/opt/lammps-mpich-4.0.3/lmp_20230127";#not workable, you need to modify this in slurm batch and partition
 $system_setting{partition} = "debug";#for slurm sbatch file
 $system_setting{main_dir} = $mainPath;
 $system_setting{script_dir} = $currentPath;
 #$system_setting{mpi_dir} = #modify in the future
 $system_setting{trainNo} = 3;# training number at a time
 $system_setting{iter} = 0;
-$system_setting{T_hi} = 2000;#the higest temperature for lammps
+$system_setting{T_hi} = 500;#the higest temperature for lammps
 $system_setting{T_lo} = 300;#the lowest temperature for lammps
 $system_setting{T_incNo} = 2;#total increment number from T_lo to T_hi,
 #the total temperature number considered is the above value + 1;
 $system_setting{T_No} = 2;#how many temperatures you want to consider within a temperature range, at lease 2
 
 my %dptrain_setting; 
-$dptrain_setting{type_map} = [("Fe","Na","O","P")];# json template file
+$dptrain_setting{type_map} = [("B","N")];# json template file
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{json_outdir} = "$mainPath/dp_train";
 $dptrain_setting{working_dir} = "$mainPath/dp_train";
-$dptrain_setting{trainstep} = 400000;#you may set a smaller train step for the first several dpgen processes
+$dptrain_setting{trainstep} = 50000;#you may set a smaller train step for the first several dpgen processes
 $dptrain_setting{compresstrainstep} = 80000;
 $dptrain_setting{final_trainstep} = 200000;
 $dptrain_setting{final_compresstrainstep} = 400000;
@@ -68,7 +69,7 @@ $dptrain_setting{disp_freq} = 200;
 $dptrain_setting{save_freq} = 200;
 my $temp =$dptrain_setting{start_lr} * 0.95**( $dptrain_setting{trainstep}/$dptrain_setting{decay_steps} );
 $dptrain_setting{start_lr4compress} = $temp;
-$dptrain_setting{rcut} = 8.00000000000001;
+$dptrain_setting{rcut} = 6.00000000000001;
 $dptrain_setting{rcut_smth} = 2.0000000001;
 $dptrain_setting{descriptor_type} = "se_a";
 $dptrain_setting{save_ckpt} = "model.ckpt";
@@ -89,10 +90,10 @@ $lmp_setting{ori_lmp_script}  = "$mainPath/scripts/lmp_script.in";#lmp script te
 $lmp_setting{ori_slurm_script}  = "$mainPath/scripts/slurm_lmp.sh";#slurm script template
 $lmp_setting{lmp_working_dir}  = "$mainPath/lmp_label";#folder for all lmp jobs
 $lmp_setting{lmp_graph_dir}  = "$mainPath/dp_train";#folder for all lmp jobs
-$lmp_setting{maxlabel}  = 15;#max number for labeling data files
-$lmp_setting{upper_bound}  = 0.25;#if dft has convergence problem, decrease it.
+$lmp_setting{maxlabel}  = 1;#max number for labeling data files
+$lmp_setting{upper_bound}  = 1.0;#if dft has convergence problem, decrease it.
 $lmp_setting{lower_bound}  = 0.05;#lower bound for labelling. smaller value,0.01, for fewer initial structures
-$lmp_setting{out_freq}  = 200;#data file and deviation output freq
+$lmp_setting{out_freq}  = 100;#data file and deviation output freq
 $lmp_setting{ts}  = 0.001;#timestep size for unit metal
 
 my %scf_setting;

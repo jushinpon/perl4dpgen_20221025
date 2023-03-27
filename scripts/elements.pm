@@ -108,14 +108,25 @@ $element{"Cf"} = [10.97, "double hexagonal close-packed", 251.0796];
 $element{"Es"} = [8.84, "double hexagonal close-packed", 252.0829];
 
 sub eleObj {# return properties of an element
-   my $elem = shift @_;
-   if(exists $element{"$elem"}){
-    return (@{$element{"$elem"}});      
-   }
-   else{
-      die "element information of \"$_\" is not listed in elements.pm.",
-      " You need to add Al according to the format of density (g/cm3), arrangement, mass, lat a , lat c. ",
-      ' For example, $element{"Nb"} = [8.57,"bcc",92.90638,3.30,3.30]'."\n"; 
-   }
+    my $elem = shift @_;
+    #print "\$elem: $elem\n";
+    #print @{$element{"$elem"}}."\n";
+    #print $element{"$elem"}->[0]."\n";
+    #print $element{"$elem"}->[1]."\n";
+    #print $element{"$elem"}->[2]."\n";
+    return (\@{$element{"$elem"}});#return array reference only
 }
+
 1;               # Loaded successfully
+#sub eleObj {# return properties of an element
+#   my $elem = shift @_;
+#   if(exists $element{"$elem"}){
+#    return (@{$element{"$elem"}});      
+#   }
+#   else{
+#      die "element information of \"$_\" is not listed in elements.pm.",
+#      " You need to add Al according to the format of density (g/cm3), arrangement, mass, lat a , lat c. ",
+#      ' For example, $element{"Nb"} = [8.57,"bcc",92.90638,3.30,3.30]'."\n"; 
+#   }
+#}
+#1;               # Loaded successfully

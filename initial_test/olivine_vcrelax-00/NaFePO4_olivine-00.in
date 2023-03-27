@@ -1,0 +1,76 @@
+&CONTROL
+calculation = "vc-relax"
+nstep          = 1000
+etot_conv_thr = 1.0d-5
+forc_conv_thr = 1.0d-4
+disk_io = 'none'
+pseudo_dir = '/opt/QEpot/SSSP_precision_pseudos/'
+tprnfor = .true.
+tstress = .true.
+/
+&SYSTEM
+ntyp = 4
+occupations = 'smearing'
+smearing = 'cold'
+degauss = 7.3498618000d-03
+ecutrho = 1.0800000000d+03
+ecutwfc = 1.0000000000d+02
+ibrav = 0
+nat = 28
+nosym = .TRUE.
+starting_magnetization(1) =   3.1250000000d-01
+starting_magnetization(2) =   0.0000000000d+00
+starting_magnetization(3) =   0.0000000000d+00
+starting_magnetization(4) =   0.0000000000d+00
+nspin = 2
+/
+&ELECTRONS
+conv_thr =   2.0000000000d-10
+electron_maxstep = 1000
+mixing_beta =   4.0000000000d-01
+/
+&IONS
+ion_dynamics = "bfgs"
+/
+&CELL
+/
+K_POINTS {automatic}
+5 7 9 0 0 0
+ATOMIC_SPECIES
+Fe     55.845 Fe.pbe-spn-kjpaw_psl.0.2.1.UPF
+Na     22.98977 Na_ONCV_PBE-1.0.oncvpsp.upf
+O      15.9994 O.pbe-n-kjpaw_psl.0.1.UPF
+P      30.973761 P.pbe-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS {angstrom}
+Na      0.000000   0.000000   0.000000
+Na      5.203180   0.000000   2.473465
+Na      0.000000   3.109365   0.000000
+Na      5.203180   3.109365   2.473465
+Fe      2.986833   4.664048   4.879553
+Fe      2.216347   1.554683   2.406088
+Fe      7.419527   1.554683   0.067377
+Fe      8.190013   4.664048   2.540842
+P       1.127425   4.664048   2.189561
+P       4.075755   1.554683   4.663026
+P       9.278935   1.554683   2.757369
+P       6.330605   4.664048   0.283904
+O       1.186440   4.664048   3.722164
+O       4.016740   1.554683   1.248699
+O       9.219920   1.554683   1.224766
+O       6.389620   4.664048   3.698231
+O       4.875494   4.664048   0.797044
+O       0.327686   1.554683   3.270509
+O       5.530866   1.554683   4.149886
+O      10.078674   4.664048   1.676421
+O       1.827253   5.874287   1.542512
+O       3.375927   0.344443   4.015977
+O       8.579107   2.764922   3.404418
+O       7.030433   3.453808   0.930953
+O       8.579107   0.344443   3.404418
+O       7.030433   5.874287   0.930953
+O       1.827253   3.453808   1.542512
+O       3.375927   2.764922   4.015977
+CELL_PARAMETERS {angstrom}
+     10.4063000000       0.0000000000       0.0000000000
+      0.0000000000       6.2187000000       0.0000000000
+      0.0000000000       0.0000000000       4.9469000000

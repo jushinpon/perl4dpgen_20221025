@@ -175,7 +175,11 @@ for my $f (@lmpFolders){#loop over all lmp folders with different thermostate
        $dev =~ s/^\s+|\s+$//;
        #print "\$dev:$dev\n";
        my @temp = split /\s+/, $dev;
-       if($temp[-3] <=  $label_upper and $temp[-3] >=  $label_lower){
+       map { s/^\s+|\s+$//g; } @temp; 
+       if($temp[-3] <=  $label_upper and $temp[-3] >=  $label_lower and  $temp[0] != 0){
+        #       step         max_devi_v         min_devi_v         avg_devi_v         max_devi_f         min_devi_f         avg_devi_f
+        #   0       4.380104e-02       1.129733e-02       3.080103e-02       1.000144e-01       5.093007e-12       7.808781e-02
+
            push @{$label{$f}},$temp[0];           
            last if (++$counter == $maxlabel);
            #print "$temp[0], $temp[-3],$label{$f},@{$label{$f}}*\n";

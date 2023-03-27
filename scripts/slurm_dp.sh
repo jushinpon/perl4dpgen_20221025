@@ -2,7 +2,7 @@
 #sed_anchor01
 #SBATCH --output=dp01.out
 #SBATCH --job-name=dp01
-##SBATCH --nodes=1
+#SBATCH --nodes=1
 ##SBATCH --ntasks-per-node=8
 #SBATCH --partition=debug
 #SBATCH --ntasks-per-node=12

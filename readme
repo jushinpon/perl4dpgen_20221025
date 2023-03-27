@@ -40,3 +40,8 @@ inform the administrator to put anaconda path in /etc/bashrc for all users.
 
  main.pl:
  my $initial_trainOnly = "yes";#if "yes", only conduct the initial training
+
+ a. for structures you want to do dpgen, use the same foldername (XX) as XX.in and XX.data
+
+all_setting.pm
+ $dptrain_setting{type_map} = [("B","N")];# json template file
