@@ -4,8 +4,8 @@
 #SBATCH --job-name=dp01
 #SBATCH --nodes=1
 ##SBATCH --ntasks-per-node=8
-#SBATCH --partition=debug
-#SBATCH --ntasks-per-node=12
+#SBATCH --partition=C24M64
+#SBATCH --ntasks-per-node=24
 ##SBATCH --exclude=node18,node20
 export LD_LIBRARY_PATH=/opt/mpich-4.0.3/lib:$LD_LIBRARY_PATH
 export PATH=/opt/mpich-4.0.3/bin:$PATH

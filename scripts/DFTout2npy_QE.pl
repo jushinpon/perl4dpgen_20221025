@@ -304,8 +304,21 @@ You need to do vc-relax, scf or drop this case by modifying all_setting.pm!\n" i
 ###CELL_PARAMETERS (angstrom)
 ###4.031848986   0.000000009   0.000000208
 	my @CellVec1 = `grep -A 3 "CELL_PARAMETERS {angstrom}" $dftin[$id]`;
-	my @CellVec2 = `grep -A 3 "CELL_PARAMETERS (angstrom)" $out[$id]`;
+	my @CellVec2;#mainly get cell information from sout 
+	if($cal_type eq "vc-relax" or $cal_type eq "vc-md"){
+		@CellVec2 = `grep -A 3 "CELL_PARAMETERS (angstrom)" $out[$id]`;#no data for md and relax.
+	}
+	elsif($cal_type eq "relax" or $cal_type eq "md"){#no cell data in sout
+		for my $cid (1..$energyNo-1){#first cell info has been put in @CellVec1
+			for my $row (1..3){
+
+			}
+
+		}
+
+	}
 	my @CellVec = (@CellVec1,@CellVec2);
+	die;
 	chomp @CellVec; 
 	my @cell;
 	for (@CellVec){
