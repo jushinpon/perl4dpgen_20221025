@@ -142,11 +142,12 @@ for my $id (0..$#out){
 
 	if ($cal_type eq "vc-relax" or $cal_type eq "relax"){
 		my @temp = grep m/End of BFGS Geometry Optimization/, @all;
+		die "\nThe vc-relax (or relax) in $out[$id] hasn't been done (no 'End of BFGS Geometry Optimization')! no data can be used for npy files.
+	You need to do vc-relax (or relax) with a larger nstep value or drop this case by modifying all_setting.pm!\n" unless (@temp);
 		chomp @temp;
 		$temp[0] =~ s/^\s+|\s+$//;
 		print "Current calculation type: $cal_type, keyword: \"$temp[0]\" \n";
-		die "The vc-relax (or relax) in $out[$id] hasn't been done (no 'End of BFGS Geometry Optimization')! no data can be used for npy files.
-	You need to do vc-relax (or relax) with a larger nstep value or drop this case by modifying all_setting.pm!\n" unless (@temp);
+		
 	}
 	else{
 		print "Current calculation type: $cal_type\n";
@@ -208,7 +209,7 @@ You need to do vc-relax, scf or drop this case by modifying all_setting.pm!\n" i
 	for (@totalstress){#for scf, only 3 items. For vc-relax or relax, could be more than 3
 	  my $temp = int ($vol_counter/3);
 		if(m/^\s+[-+]?\d+\.?\d+\s+[-+]?\d+\.?\d+\s+[-+]?\d+\.?\d+\s+([-+]?\d+\.?\d+)\s+([-+]?\d+\.?\d+)\s+([-+]?\d+\.?\d+)/){
-			if($temp == 0 or $cal_type eq "relax"){#for relax and scf, only $cellVol[0] exists, which comes from in file 
+			if($temp == 0 or $cal_type eq "relax" or $cal_type eq "md"){#for relax and scf, only $cellVol[0] exists, which comes from in file 
 			    #For vc-relax and vc-md, @cellVol keeps the initial volume value (the same as in file)
 				
 				push @virial, [$1*$kbar2evperang3*$cellVol[0],$2*$kbar2evperang3*$cellVol[0],$3*$kbar2evperang3*$cellVol[0]];
@@ -303,22 +304,30 @@ You need to do vc-relax, scf or drop this case by modifying all_setting.pm!\n" i
 ############### box ############
 ###CELL_PARAMETERS (angstrom)
 ###4.031848986   0.000000009   0.000000208
-	my @CellVec1 = `grep -A 3 "CELL_PARAMETERS {angstrom}" $dftin[$id]`;
-	my @CellVec2;#mainly get cell information from sout 
+#    my @elem = `grep -v '^[[:space:]]*\$' $in|grep -A $nat "ATOMIC_POSITIONS [(|{]angstrom[)|}]"|grep -v "ATOMIC_POSITIONS [(|{]angstrom[)|}]"|grep -v -- '--'|awk '{print \$1}'`;
+    my @CellVec1 = `grep -v '^[[:space:]]*\$' $dftin[$id]|grep -A 3 "CELL_PARAMETERS {angstrom}"|grep -v "CELL_PARAMETERS {angstrom}"|grep -v -- '--'`;
+	map { s/^\s+|\s+$//g; } @CellVec1;
+	#print "\@CellVec1: @CellVec1\n";
+	#die;
+	#my @CellVec1 = `grep -A 3 "CELL_PARAMETERS {angstrom}" $dftin[$id]`;
+	my @CellVec2 = '';#mainly get cell information from sout 
+
 	if($cal_type eq "vc-relax" or $cal_type eq "vc-md"){
-		@CellVec2 = `grep -A 3 "CELL_PARAMETERS (angstrom)" $out[$id]`;#no data for md and relax.
+		@CellVec2 = `grep -v '^[[:space:]]*\$' $out[$id]|grep -A 3 "CELL_PARAMETERS [(|{]angstrom[)|}]"|grep -v "CELL_PARAMETERS [(|{]angstrom[)|}]"|grep -v -- '--'`;
+		#grep -A 3 "CELL_PARAMETERS (angstrom)" $out[$id]`;#no data for md and relax.
+		map { s/^\s+|\s+$//g; } @CellVec2;
 	}
 	elsif($cal_type eq "relax" or $cal_type eq "md"){#no cell data in sout
 		for my $cid (1..$energyNo-1){#first cell info has been put in @CellVec1
-			for my $row (1..3){
-
-			}
-
+			my $id = ($cid -1)*3;
+			#for my $row (0..2){
+			$CellVec2[$id] = $CellVec1[0];
+			$CellVec2[$id+1] = $CellVec1[1];
+			$CellVec2[$id+2] = $CellVec1[2];
 		}
-
 	}
 	my @CellVec = (@CellVec1,@CellVec2);
-	die;
+	#die;
 	chomp @CellVec; 
 	my @cell;
 	for (@CellVec){

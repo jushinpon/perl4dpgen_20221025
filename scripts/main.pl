@@ -22,6 +22,7 @@ require './dp_train.pl';
 require './matplot.pl';
 #my $onlyfinal_dptrain = "no";#yes or no (not work currently)
 my $initial_trainOnly = "no";#if "yes", only conduct the initial training
+my $initial_npyOnly = "yes";#if "yes", only conduct the npy convertion for initial folder
 my $forkNo = 1;#modify in the future
 my $pm = Parallel::ForkManager->new("$forkNo");
 #load all settings first
@@ -336,6 +337,7 @@ if($jobtype eq "new"){# a brand new dpgen job. No previous labeled npy files exi
             &DFTout2npy_QE(\%system_setting,\%npy_setting);#send settings for getting npy
         }
     }
+    die "Only do the npy convertion for data in the initial folder.\n" if($initial_npyOnly eq "yes");
 }
 elsif($jobtype eq "rerun"){# old npy files exist
     print "\n\n#***Doing jobtype for rerun\n";
