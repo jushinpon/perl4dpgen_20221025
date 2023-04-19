@@ -39,10 +39,27 @@ my $json;
     close $fh;
 }
 my $decoded = decode_json($json);
+
+#get training and validation folders
+my @allnpy_Trafolder;
+my @allnpy_Valfolder;
+
+for my $v (@allnpy_folder){
+    #print "$v\n";
+    if($v =~ /.+\/val$/){
+        push @allnpy_Valfolder,$v; 
+    }
+    else{
+        push @allnpy_Trafolder,$v; 
+    }
+}
+die "No val folder for your system. Try to  use a smaller number for \$set_No in all_setting.pm" unless(@allnpy_Trafolder);
+map { s/^\s+|\s+$//g; } @allnpy_Valfolder;
+map { s/^\s+|\s+$//g; } @allnpy_Trafolder;
 ##modify set folders' parent path
-$decoded->{training}->{training_data}->{systems} = [@allnpy_folder];#clean it first
-#use the same for labeling training
-$decoded->{training}->{validation_data}->{systems} = [@allnpy_folder];#clean it first
+$decoded->{training}->{training_data}->{systems} = [@allnpy_Trafolder];#clean it first
+#find folders with /val
+$decoded->{training}->{validation_data}->{systems} = [@allnpy_Valfolder];#clean it first
 $decoded->{model}->{type_map} = [@type_map];#clean it first
 ###
 my $trainNo = $ss_hr->{trainNo};

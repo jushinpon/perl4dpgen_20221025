@@ -20,6 +20,7 @@ sub DFTout2npy_QE{
 my ($ss_hr,$npy_hr) = @_;#recive hash reference for setting
 my $mainPath = $ss_hr->{main_dir};# main path of dpgen folder
 my $currentPath = $ss_hr->{script_dir};
+my $set_No = $ss_hr->{set_No};
 my $useFormationEnergy = $ss_hr->{useFormationEnergy};
 my $dftBE_all = $npy_hr->{dftBE};
 my $expBE_be = $npy_hr->{expBE};
@@ -396,27 +397,80 @@ for my $f (@npy){
 
 	close($t);
 }
-my $enNo = `cat $npyout_dir/$npy[0].raw|wc -l`;#total new line symbol number
+my @tempNo = `cat $npyout_dir/$npy[0].raw`;#total new line symbol number
+my $enNo = @tempNo;
+#print "\$enNo: $enNo\n";
+#die;
+#my $enNo = `cat $npyout_dir/$npy[0].raw|wc -l`;#total new line symbol number
 for my $f (1..$#npy){
-	my $temp = `cat $npyout_dir/$npy[$f].raw|wc -l`;
+	my @temp = `cat $npyout_dir/$npy[$f].raw`;
+	my $temp = @temp;
 	if ($temp != $enNo){
 		print "$enNo $temp\n";
 		die "the rows in $npy[$f].raw are different from those of energy.raw for $npy_hr->{dftsout_dir}\n";
 	}
 }
+
+#making groups for prefix set
+#$set_No = 19;
+my $groupNo;
+#if(!$enNo%$set_No){
+$groupNo = floor($enNo/$set_No);
+print "\n#####Warning!!!The set.XXX number is fewer than 4. Current $groupNo, and better to use a smaller number for \$set_No in all_setting.pm (ok for labeled data)\n" if ($groupNo <= 3);
+#}
+#else{
+#	$groupNo = floor($enNo/$set_No) + 1;
+#}
+#print "$enNo,$set_No, $groupNo\n";
+for my $f (0..$#npy){
+	my @temp = `cat $npyout_dir/$npy[$f].raw`;
+	map { s/^\s+|\s+$//g; } @temp;
+	for my $g (0..$groupNo-1){
+		my $setID = sprintf("%03d",$g);
+		my $startid = $g * $set_No;
+		my $endid = ($g + 1) * $set_No - 1;
+		$endid = $#temp if($g == $groupNo-1);#last set group could have more
+		chomp $setID;
+		my $filepath = "$npyout_dir/$npy[$f].raw$setID";
+		open my $t ,">$filepath";
+		for my $i ($startid..$endid){
+			print $t "$temp[$i]\n";# dereference
+			#print $t "\n" unless($i == $#raw);
+		} 
+		close($t);
+	}	
+}
+
+
+#print "$set_No $groupNo\n";
+#die;
+
 #print $enNo;
-#die; 
-my $setID = sprintf("%02d",0);#only 0 is enough
-my $npyset = "set.$setID";
-`rm -rf $npyout_dir/$npyset`;
-`mkdir -p $npyout_dir/$npyset`;
-  `python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/box.raw"   , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/box",    data)'`;
-  `python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/coord.raw" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/coord",  data)'`;
-  `python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/energy.raw" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/energy",  data)'`;
-  `python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/force.raw" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/force",  data)'`;
-  
-  #if($cal_type ne "md" and $cal_type ne "vc-md"){#kinetic energy contribution is insignificant
-  	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/virial.raw" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/virial",  data)'`;
+for my $s (0..$groupNo-1){
+	my $setID = sprintf("%03d",$s);#only 0 is enough
+	my $npyset;
+	#if($s == $groupNo-1){
+	#	$npyset = "valset.000";#for validation
+	#}
+	#else{
+		$npyset = "set.$setID";
+	#}
+	`rm -rf $npyout_dir/$npyset`;
+	`mkdir -p $npyout_dir/$npyset`;
+	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/box.raw$setID"   , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/box",    data)'`;
+	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/coord.raw$setID" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/coord",  data)'`;
+	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/energy.raw$setID" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/energy",  data)'`;
+	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/force.raw$setID" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/force",  data)'`;
+
+	#if($cal_type ne "md" and $cal_type ne "vc-md"){#kinetic energy contribution is insignificant
+	`python -c 'import numpy as np; data = np.loadtxt("$npyout_dir/virial.raw$setID" , ndmin = 2); data = data.astype (np.float32); np.save ("$npyout_dir/$npyset/virial",  data)'`;
+	if($s == $groupNo-1 and $s != 0){
+		`rm -rf $npyout_dir/val`;
+		`mkdir -p $npyout_dir/val`;
+		`cp $npyout_dir/type.raw $npyout_dir/val/ `;
+		`mv $npyout_dir/$npyset $npyout_dir/val/ `;
+	}
+}  
   #}
 }# end sub
 1;

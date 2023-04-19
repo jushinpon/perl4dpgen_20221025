@@ -24,12 +24,12 @@ my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 
 my %dptrain_setting; 
-$dptrain_setting{type_map} = [("Ag","Ge","Mn"."Sb","Te")];# json template file
+$dptrain_setting{type_map} = [("Ag","Ge","Mn","Sb","Te")];# json template file
 $dptrain_setting{valid_ratio} = 0.2;# the validation ratio for all setXX folders,0.2 means 20 % of all set folders
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{work_dir} = "$mainPath/$ref_dir";#main dir for standalone dp train
 $dptrain_setting{npy_dir} = "$mainPath/all_npy*";#you may use your dir, under which all npy files are included.
-$dptrain_setting{trainstep} = 200000;#you may set a smaller train step for the first several dpgen processes
+$dptrain_setting{trainstep} = 450000;#you may set a smaller train step for the first several dpgen processes
 $dptrain_setting{start_lr} = 0.001;
 my $t1 = log(3.0e-08/$dptrain_setting{start_lr});
 my $t2 = log(0.95)*$dptrain_setting{trainstep};
@@ -52,13 +52,16 @@ my $dps_hr = \%dptrain_setting;
 my @temp = `find $dps_hr->{npy_dir}  -type d -name "set.*"`;#all npy files
 die "no npy files in $dps_hr->{npy_dir} folders\n" unless(@temp);
 chomp  @temp;
-my @allnpy; # dirs with all set.XXX folders
+my @allnpy_temp; # dirs with all set.XXX folders
 for (0..$#temp){
     my $temp = `dirname $temp[$_]`;
     chomp $temp;
-    $allnpy[$_] = $temp;#remove the last set.XX
+    $allnpy_temp[$_] = $temp;#remove the last set.XX
    # print "$allnpy[$_]\n";
 }
+
+my %temp = map {$_ => 1} @allnpy_temp;
+my @allnpy = sort keys %temp; # dirs with all set.XXX folders
 
 my @allnpy4train;
 my @allnpy4valid;
@@ -74,21 +77,25 @@ my $allnpyNo = @allnpy;
 
 for (@allnpy){
     chomp;
-    if(rand() >= $dptrain_setting{valid_ratio}){
-        push @allnpy4train, $_;#npy for training
-        `echo $_ >> ../standalone_dptrain/train_dir.txt`;
-    }
-    else{
+    if(/.+\/val$/){
         push @allnpy4valid, $_;#npy for validation
         `echo $_ >> ../standalone_dptrain/valid_dir.txt`;
+    #print "val: $_\n";
+
     }
+    else{
+        push @allnpy4train, $_;#npy for training
+        `echo $_ >> ../standalone_dptrain/train_dir.txt`;
+    #print "trn: $_\n";
 
+    }
 }
+die "No val npy files\n" unless(@allnpy4valid);
 
-die "No trainning npy files\n" unless(@allnpy4train);
-die "No validation npy files. totoal npy files is $allnpyNo",
-    " and the pick ratio for validation is $dptrain_setting{valid_ratio}\n",
-    unless(@allnpy4valid);
+#die "No trainning npy files\n" unless(@allnpy4train);
+#die "No validation npy files. totoal npy files is $allnpyNo",
+#    " and the pick ratio for validation is $dptrain_setting{valid_ratio}\n",
+#    unless(@allnpy4valid);
 #
 #print "@allnpy4train\n";
 #die; 
