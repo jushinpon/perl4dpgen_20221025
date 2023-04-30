@@ -14,6 +14,7 @@ use strict;
 use Data::Dumper;
 use Cwd;
 use POSIX;
+use List::Util qw/shuffle/;
 
 sub DFTout2npy_QE{
 
@@ -99,7 +100,7 @@ force => \@fraw,
 coord => \@craw,
 box => \@braw
 );
-
+my $energyNo;# use it to check all data rows of npy files. They should be identical
 for my $id (0..$#out){
 	chomp $id;
 		print "**current file: $out[$id]\n"; 
@@ -172,7 +173,7 @@ for my $id (0..$#out){
 	    return
 	}
     for (@totalenergy){chomp;push @eraw,$_}
-	my $energyNo = @totalenergy;
+	$energyNo = @totalenergy;
 	#for (1..@eraw){my $id = $_ -1; print "$id $eraw[$id]\n";}
 
 # get system volume for virial (in unit of eV)
@@ -353,6 +354,21 @@ You need to do vc-relax, scf or drop this case by modifying all_setting.pm!\n" i
 if ($energyNo < $cellNo){pop @braw;} # for MD, the last one is useless.
 }
 
+#shuffling all raw arraies
+
+my @ref_id = (0..$energyNo - 1);
+@ref_id = shuffle @ref_id;#all npy files need use the same shuffled ids
+
+for my $f (@npy){#loop over all npy types
+    my @raw;	
+	for my $d (0..$#ref_id){
+		my $tempid = $ref_id[$d];
+		$raw[$d] = ${$raw_ref{$f}}[$tempid];
+		#print "$d: $tempid,$raw[$d],".${$raw_ref{$f}}[$tempid]."\n";			
+	}
+	@{ $raw_ref{$f} } = @raw;
+}
+
 #make folder when all are good.
 my $inistr_dir = $npy_hr->{inistr_dir}; 
 `mkdir -p $npyout_dir`;
@@ -468,6 +484,10 @@ for my $s (0..$groupNo-1){
 		`rm -rf $npyout_dir/val`;
 		`mkdir -p $npyout_dir/val`;
 		`cp $npyout_dir/type.raw $npyout_dir/val/ `;
+		`mv $npyout_dir/box.raw$setID $npyout_dir/val/box.raw `;
+		`mv $npyout_dir/coord.raw$setID $npyout_dir/val/coord.raw `;
+		`mv $npyout_dir/energy.raw$setID $npyout_dir/val/energy.raw `;
+		`mv $npyout_dir/force.raw$setID $npyout_dir/val/force.raw `;
 		`mv $npyout_dir/$npyset $npyout_dir/val/ `;
 	}
 }  

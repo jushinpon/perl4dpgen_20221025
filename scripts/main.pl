@@ -21,7 +21,7 @@ require './lmp_label.pl';
 require './dp_train.pl';
 require './matplot.pl';
 #my $onlyfinal_dptrain = "no";#yes or no (not work currently)
-my $initial_trainOnly = "yes";#if "yes", only conduct the initial training
+my $initial_trainOnly = "no";#if "yes", only conduct the initial training
 my $initial_npyOnly = "no";#if "yes", only conduct the npy convertion for initial folder
 my $forkNo = 1;#modify in the future
 my $pm = Parallel::ForkManager->new("$forkNo");
@@ -409,7 +409,7 @@ for (1..$trainNo){
 }
 
 #begin make plots for training results
-`cp -R $mainPath/all_npy* $mainPath/matplot`;
+#`cp -R $mainPath/all_npy* $mainPath/matplot`;
 print "making plots for checking training results before iteration loop\n";
 &matplot(\%system_setting,\%dptrain_setting);
 
@@ -521,7 +521,7 @@ for my $iter ($begIter..$#iteration){
 
     print "making plots for checking training results for iteration $iter\n";
     #`rm -rf $mainPath/matplot/all_npy`;
-    `cp -R $mainPath/all_npy $mainPath/matplot`;
+    #`cp -R $mainPath/all_npy $mainPath/matplot`;
     &matplot(\%system_setting,\%dptrain_setting);
 }#iteration loop
 

@@ -29,8 +29,8 @@ $dptrain_setting{valid_ratio} = 0.2;# the validation ratio for all setXX folders
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{work_dir} = "$mainPath/$ref_dir";#main dir for standalone dp train
 $dptrain_setting{npy_dir} = "$mainPath/all_npy*";#you may use your dir, under which all npy files are included.
-$dptrain_setting{trainstep} = 450000;#you may set a smaller train step for the first several dpgen processes
-$dptrain_setting{start_lr} = 0.001;
+$dptrain_setting{trainstep} = 2000;#you may set a smaller train step for the first several dpgen processes
+$dptrain_setting{start_lr} = 0.002;
 my $t1 = log(3.0e-08/$dptrain_setting{start_lr});
 my $t2 = log(0.95)*$dptrain_setting{trainstep};
 my $dcstep = floor($t2/$t1);
@@ -44,12 +44,12 @@ $dptrain_setting{save_ckpt} = "model.ckpt";
 $dptrain_setting{disp_file} = "lcurve.out";
 my $dps_hr = \%dptrain_setting;
 
-#house keeping first
+##house keeping first
 `rm -rf $dptrain_setting{work_dir}`;
 `mkdir -p $dptrain_setting{work_dir}`;
 
 # training on all npy files in all_npy* folders
-my @temp = `find $dps_hr->{npy_dir}  -type d -name "set.*"`;#all npy files
+my @temp = `find $dps_hr->{npy_dir}  -type d -name "set.*"`;#all npy files, also within /val
 die "no npy files in $dps_hr->{npy_dir} folders\n" unless(@temp);
 chomp  @temp;
 my @allnpy_temp; # dirs with all set.XXX folders
@@ -63,36 +63,31 @@ for (0..$#temp){
 my %temp = map {$_ => 1} @allnpy_temp;
 my @allnpy = sort keys %temp; # dirs with all set.XXX folders
 
-my @allnpy4train;
-my @allnpy4valid;
-
 chomp @allnpy;
 my $allnpyNo = @allnpy;
+
+my @allnpy4train;
+my @allnpy4valid;
 
 #keep the information of training and validation data
 `rm -f ../standalone_dptrain/train_dir.txt`; 
 `rm -f ../standalone_dptrain/valid_dir.txt`; 
 `touch ../standalone_dptrain/valid_dir.txt`; 
 `touch ../standalone_dptrain/valid_dir.txt`;
-
+#
 for (@allnpy){
     chomp;
     if(/.+\/val$/){
         push @allnpy4valid, $_;#npy for validation
         `echo $_ >> ../standalone_dptrain/valid_dir.txt`;
-    #print "val: $_\n";
-
     }
     else{
         push @allnpy4train, $_;#npy for training
         `echo $_ >> ../standalone_dptrain/train_dir.txt`;
-    #print "trn: $_\n";
-
     }
 }
-die "No val npy files\n" unless(@allnpy4valid);
-
-#die "No trainning npy files\n" unless(@allnpy4train);
+die "No val npy files for validation\n" unless(@allnpy4valid);
+die "No trainning npy files\n" unless(@allnpy4train);
 #die "No validation npy files. totoal npy files is $allnpyNo",
 #    " and the pick ratio for validation is $dptrain_setting{valid_ratio}\n",
 #    unless(@allnpy4valid);
@@ -157,10 +152,10 @@ my $sbatch_script = "$sbatch_outdir/slurm_dp.sh";#absolute path for json script
 #modify job name
 `sed -i '/#SBATCH.*--job-name/d' $sbatch_script`;
 `sed -i '/#sed_anchor01/a #SBATCH --job-name=standalone_dptrain' $sbatch_script`;
-#modify output file name
+##modify output file name
 `sed -i '/#SBATCH.*--output/d' $sbatch_script`;
 `sed -i '/#sed_anchor01/a #SBATCH --output=standalone_dptrain.dpout' $sbatch_script`;
-#modify json file name and path
+##modify json file name and path
 `sed -i '/dp train .*/d' $sbatch_script`;
 `sed -i '/#sed_anchor02/a dp train $work_dir/standalone.json' $sbatch_script`;
 `sed -i '/dp freeze .*/d' $sbatch_script`;
@@ -178,7 +173,7 @@ system("sbatch ../slurm_dp.sh");
 #slurm
 chdir("$currentPath");
 my $debug = "yes";
-### check whether all dp train processes are done
+#### check whether all dp train processes are done
 print "\n\n#Beginning dp train while loop for standalone script.\n";
 my $whileCounter = 0;
 my $Counter = 0;
@@ -213,6 +208,7 @@ while ($whileCounter <= 5000 and $Counter != 1){
 }
 
 my $dpcheck = `grep "finished training" $sbatch_outdir/dptrain_output/standalone_dptrain.dpout`;
+#print "dpcheck $dpcheck: $sbatch_outdir/dptrain_output/standalone_dptrain.dpout\n";
 
 if($dpcheck){#standalone done
     print "standalone dp train done!\n";
@@ -220,11 +216,10 @@ if($dpcheck){#standalone done
 else{
     die "standalone dp train failed!\n";
 }
+#$elapsed = $elapsed/60.;
+#print "\n#End of standalone dp train while loop after $elapsed min.\n\n";
 
-$elapsed = $elapsed/60.;
-print "\n#End of standalone dp train while loop after $elapsed min.\n\n";
-
-#making plots
+#making plots using dp test 
 #test_dir in the future
 my $train_dir = "$dptrain_setting{work_dir}/train_npy";#collect all training npys
 my $validation_dir = "$dptrain_setting{work_dir}/validation_npy";
@@ -236,14 +231,40 @@ my $validation_dir = "$dptrain_setting{work_dir}/validation_npy";
 
 for (0..$#allnpy4train){#copy training npy files
     chomp;
-    `mkdir -p $train_dir/$_`;
-    `cp -r $allnpy4train[$_] $train_dir/$_`;
+    chomp $allnpy4train[$_];
+
+    my @temp = `find $allnpy4train[$_] -maxdepth 1 -type d -name "set.*"`;#all npy files
+    map { s/^\s+|\s+$//g; } @temp;
+
+
+    #print "###$_: $allnpy4train[$_]\n";
+    for my $t (@temp){
+       # print "train: $t\n";
+        $t =~ /.+set\.(.+)$/;
+        chomp $1;
+        #print "\$1: $1\n";
+        `mkdir -p $train_dir/$_/$1`;
+        `cp -r $t $train_dir/$_/$1`;
+        `cp  $allnpy4train[$_]/type.raw $train_dir/$_/$1`;
+        `cp  $allnpy4train[$_]/box.raw$1 $train_dir/$_/$1/box.raw`;
+        `cp  $allnpy4train[$_]/coord.raw$1 $train_dir/$_/$1/coord.raw`;
+        `cp  $allnpy4train[$_]/energy.raw$1 $train_dir/$_/$1/energy.raw`;
+        `cp  $allnpy4train[$_]/force.raw$1 $train_dir/$_/$1/force.raw`;
+    }
+    #my @temp = `find $train_dir/$_  -type d -name "val"`;#all npy files
+    #map { s/^\s+|\s+$//g; } @temp;
+    #for my $m (@temp){
+    #    #print "rm: $m\n";
+    #    `rm -r $m`;
+    #}
 }
 
 for (0..$#allnpy4valid){#copy validation npy files
     chomp;
+    `rm -r $validation_dir/$_`;
     `mkdir -p $validation_dir/$_`;
     `cp -r $allnpy4valid[$_] $validation_dir/$_`;
+    print "val $_: $allnpy4valid[$_]\n";
 }
 
 my @make_plots = ("train","validation");
@@ -253,22 +274,26 @@ for (0..$#make_plots){
     `rm ./temp.*.out`;#remove old dp test output files in current dir 
     `cp  $dptrain_setting{work_dir}/dptrain_output/lcurve.out ./`;#for loss profiles
 
-     #the following for check pred. and ref. data distributions for energy, force, and virial
-     my $source = "$dptrain_setting{work_dir}/$make_plots[$_]"."_npy"; 
-     system("source activate deepmd-cpu;dp test -m $graph -s $source -d ./temp.out;conda deactivate");
+    #the following for check pred. and ref. data distributions for energy, force, and virial
+    my $source = "$dptrain_setting{work_dir}/$make_plots[$_]"."_npy"; 
+    system("source activate deepmd-cpu;dp test -n 100000 -m $graph -s $source -d ./temp.out;conda deactivate");
+    #system("source activate deepmd-cpu;dp test -n 2000 -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $mainPath/matplot -d ./temp.out;conda deactivate");
+    `cp  ./temp.e.out $work_dir/$make_plots[$_]-Oritemp.e.out`;#for raw data
+    
     # get atom number for normalizing energy
-     `mv ./temp.e.out ./tempmod.e.out`;# for the following touch temp.e.out
-     my @temp = `grep "#" ./tempmod.e.out|awk '{print \$2}'`;
-     chomp @temp;
+    `mv ./temp.e.out ./tempmod.e.out`;# for the following touch temp.e.out
+    my @temp = `grep "#" ./tempmod.e.out|awk '{print \$2}'`;
+    map { s/^\s+|\s+$//g; } @temp;
+
      my @npypath = map {$_ =~ s/:$//g; $_;} @temp;#remove ":"
-     die "not npy dirs for matplot\n" unless(@npypath);
+     die "no npy dirs for standalone matplot\n" unless(@npypath);
      #chomp @npypath;
      my @atomNo;
      for my $npath (@npypath){
          #$_ =~ s/:$//g;
-         #print "path: $_\n";
-         my @temp = `cat $npath/coord.raw`;#get how many frames in this raw
-         chomp @temp;
+         #print "npath: $npath\n";
+        my @temp = `cat $npath/coord.raw`;#get how many frames in this raw
+        map { s/^\s+|\s+$//g; } @temp;
          for my $nu (@temp){
              $nu  =~ s/^\s+|\s+$//;
              my @sp = split(/\s+/,$nu);
@@ -295,6 +320,9 @@ for (0..$#make_plots){
          #chmop @temp;
          `echo "$temp[0] $temp[1]" >> ./temp.e.out`;
      }
+    `cp  ./temp.e.out $work_dir/$make_plots[$_]-temp.e.out`;#for raw data
+    `cp  ./temp.f.out $work_dir/$make_plots[$_]-temp.f.out`;#for raw data
+    `cp  ./temp.v.out $work_dir/$make_plots[$_]-temp.v.out`;#for raw data 
     # end of energy normalization    
     system ("python dp_plots.py");
     sleep(1);

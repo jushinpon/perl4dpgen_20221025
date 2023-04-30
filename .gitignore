@@ -10,4 +10,5 @@ nohup.out
 /standalone_dptrain
 *.txt
 test*.pl
+*test.pl
 test*
