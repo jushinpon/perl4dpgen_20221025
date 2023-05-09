@@ -197,7 +197,8 @@ for my $in (@QE_in){
         $coords4data .= "$temp\n";      
     }
     chomp $coords4data;
-    #print "$coords4data\n";
+    print "$coords4data\n";
+    die;
 # modify data file
 
 my $here_doc =<<"END_MESSAGE";
@@ -447,7 +448,8 @@ for my $iter ($begIter..$#iteration){
     my %strFolders;#scf-done folder information of a structure in different folders (different thermostates by dft scf)
     for my $folder (@strFoldersThermo){
         my $temp = `grep "JOB DONE" $folder/*.sout`;#only one sout file
-        if($temp){#with ! totoal energy (scf done)
+        my $temp1 = `grep "convergence NOT achieved after" $folder/*.sout`;#only one sout file
+        if($temp and !$temp1){#with ! totoal energy (scf done)
             #$folder: ../DFT_output/T2000-P0-R3000-Al-12345/lmp_1500
             $folder =~ /.+T\d+-P\d+-R\d+-(.+)\/.+/;#structure in initial folder
             chomp $1;#Al-12345 in this example
