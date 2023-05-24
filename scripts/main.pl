@@ -198,7 +198,7 @@ for my $in (@QE_in){
     }
     chomp $coords4data;
     print "$coords4data\n";
-    die;
+#    die;
 # modify data file
 
 my $here_doc =<<"END_MESSAGE";
