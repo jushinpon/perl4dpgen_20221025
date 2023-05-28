@@ -16,37 +16,42 @@ my $currentPath = getcwd();# dir for all scripts
 chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
-my $NVT4str = "no";
-my @allNVTstru = ("");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
+my $NVT4str = "yes";
+my @allNVTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
 # should have the same names as in the initial folder
 my $NPT4str = "yes";
-my @allNPTstru = ("md-rocksalt-Ag20Ge10Mn10Sb10Te50_3d-05","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-03","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-04","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-02","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-04","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-03","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-04","md-rocksalt-Ag05Ge35Mn05Sb05Te50_3d-03","md-rocksalt-Ag05Ge05Mn05Sb35Te50","md-rocksalt-Ag05Ge05Mn35Sb05Te50","md-rocksalt-Ag06Ge06Mn34Sb06Te50","md-rocksalt-Ag06Ge34Mn06Sb06Te50","md-rocksalt-Ag08Ge08Mn08Sb29Te50","md-rocksalt-Ag08Ge08Mn29Sb08Te50","md-rocksalt-Ag08Ge29Mn08Sb08Te50","md-rocksalt-Ag09Ge09Mn09Sb25Te50","md-rocksalt-Ag09Ge09Mn25Sb09Te50","md-rocksalt-Ag09Ge25Mn09Sb09Te50","md-rocksalt-Ag10Ge10Mn10Sb20Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50_3d-03","md-rocksalt-Ag20Ge10Mn10Sb10Te50","md-rocksalt-Ag25Ge09Mn09Sb09Te50","md-rocksalt-Ag32Ge07Mn07Sb07Te50","md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");
-my @allPress = (0.0);#unit:bar,the pressures your want to use for labelling
-my @allStep = (3000);#time step number, should be larger than 500 (default output_freq)
+my @allNPTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");
+#my @allNPTstru = ("md-rocksalt-Ag20Ge10Mn10Sb10Te50_3d-05","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-03","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-04","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-02","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-04","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-03","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-04","md-rocksalt-Ag05Ge35Mn05Sb05Te50_3d-03","md-rocksalt-Ag05Ge05Mn05Sb35Te50","md-rocksalt-Ag05Ge05Mn35Sb05Te50","md-rocksalt-Ag06Ge06Mn34Sb06Te50","md-rocksalt-Ag06Ge34Mn06Sb06Te50","md-rocksalt-Ag08Ge08Mn08Sb29Te50","md-rocksalt-Ag08Ge08Mn29Sb08Te50","md-rocksalt-Ag08Ge29Mn08Sb08Te50","md-rocksalt-Ag09Ge09Mn09Sb25Te50","md-rocksalt-Ag09Ge09Mn25Sb09Te50","md-rocksalt-Ag09Ge25Mn09Sb09Te50","md-rocksalt-Ag10Ge10Mn10Sb20Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50_3d-03","md-rocksalt-Ag20Ge10Mn10Sb10Te50","md-rocksalt-Ag25Ge09Mn09Sb09Te50","md-rocksalt-Ag32Ge07Mn07Sb07Te50","md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");
+#!need use integer for the following pressures
+my @allPress = (0,1000,10000,100000);#unit:bar,the pressures your want to use for labelling
+my @allStep = (1000,5000,10000);#time step number, should be larger than 500 (default output_freq)
 #prefixes of data and QE in files should be the same as the foldername !!!!
-my @allIniStr =  ("md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");#for the fisrt dp train,should include all structures for labeling
+my @allIniStr = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");
+#my @allIniStr =  ("md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");#for the fisrt dp train,should include all structures for labeling
 #my @allIniStr =  ("md-rocksalt-Ag20Ge10Mn10Sb10Te50_3d-05","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-03","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-04","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-02","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-04","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-03","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-04","md-rocksalt-Ag05Ge35Mn05Sb05Te50_3d-03","md-rocksalt-Ag05Ge05Mn05Sb35Te50","md-rocksalt-Ag05Ge05Mn35Sb05Te50","md-rocksalt-Ag06Ge06Mn34Sb06Te50","md-rocksalt-Ag06Ge34Mn06Sb06Te50","md-rocksalt-Ag08Ge08Mn08Sb29Te50","md-rocksalt-Ag08Ge08Mn29Sb08Te50","md-rocksalt-Ag08Ge29Mn08Sb08Te50","md-rocksalt-Ag09Ge09Mn09Sb25Te50","md-rocksalt-Ag09Ge09Mn25Sb09Te50","md-rocksalt-Ag09Ge25Mn09Sb09Te50","md-rocksalt-Ag10Ge10Mn10Sb20Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50_3d-03","md-rocksalt-Ag20Ge10Mn10Sb10Te50","md-rocksalt-Ag25Ge09Mn09Sb09Te50","md-rocksalt-Ag32Ge07Mn07Sb07Te50","md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");#for the fisrt dp train,should include all structures for labeling
 #my @allIniStr =  ("N2","N2SCF","N25","N154","N568584","N570747","N672233","N754514","N999498","N1080711","N1176403","B160","B161","B22046","B541848","B570316","B570602","B632401","B1193675","B1198656","B1202723","B1228790","BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
 #"bcc_bulk",
 my %system_setting;
 #$system_setting{QE_pot} = "/opt/QEpot/SSSP_precision.json";#"new";#check readme
 $system_setting{useFormationEnergy} = "no";#if "yes", you need to prepare dpE2expE.dat in each folder under ./initial
+$system_setting{doDFT4dpgen} = "no";#if "yes", you will do scf calculation and dp train for each iteration.
 $system_setting{QE_pot_json} = "/opt/QEpot/SSSP_efficiency.json";#"new";#check readme
 $system_setting{jobtype} = "new";#"new";#check readme
 $system_setting{begIter} = 0;#0 for $system_setting{jobtype} = "new" or "dpgen_again"
 #for rerun, check readme
 $system_setting{debug} = "yes";#no for a brand new run
-$system_setting{dft_exe} = "/opt/QEGCC_MPICH4.0.3-cp/bin/";#not workable, you need to modify this in slurm batch and partition
+$system_setting{dft_exe} = "/opt/QEGCC_MPICH4.0.3/bin/pw.x";#not workable, you need to modify this in slurm batch and partition
 $system_setting{lmp_exe} = "/opt/lammps-mpich-4.0.3/lmpdeepmd_20230322";#not workable, you need to modify this in slurm batch and partition
 $system_setting{partition} = "debug";#for slurm sbatch file
 $system_setting{main_dir} = $mainPath;
 $system_setting{script_dir} = $currentPath;
 #$system_setting{mpi_dir} = #modify in the future
-$system_setting{trainNo} = 1;# training number at a time
+$system_setting{trainNo} = 3;# training number at a time
 $system_setting{iter} = 0;
-$system_setting{T_hi} = 500;#the higest temperature for lammps
-$system_setting{T_lo} = 300;#the lowest temperature for lammps
-$system_setting{T_incNo} = 2;#total increment number from T_lo to T_hi,
+$system_setting{T_hi} = 2500;#the higest temperature for lammps (integer)
+$system_setting{T_lo} = 300;#the lowest temperature for lammps (integer)
+#$system_setting{doDFT4dpgen} = "no", set $system_setting{T_incNo} = 2
+$system_setting{T_incNo} = 3;#total increment number from T_lo to T_hi,
 #the total temperature number considered is the above value + 1;
 $system_setting{T_No} = 2;#how many temperatures you want to consider within a temperature range, at lease 2
 $system_setting{set_No} = 50;#how many frames to be a group for set.xxx (frames > 5*set_No)
@@ -61,7 +66,7 @@ $dptrain_setting{compresstrainstep} = 80000;
 $dptrain_setting{final_trainstep} = 200000;
 $dptrain_setting{final_compresstrainstep} = 400000;
 #lr(t) = start_lr * decay_rate ^ ( t / decay_steps ),default decay_rate:0.95
-$dptrain_setting{start_lr} = 0.005;
+$dptrain_setting{start_lr} = 0.002;
 my $t1 = log(3.0e-08/$dptrain_setting{start_lr});
 my $t2 = log(0.95)*$dptrain_setting{trainstep};
 my $dcstep = floor($t2/$t1);
@@ -95,7 +100,7 @@ $lmp_setting{lmp_graph_dir}  = "$mainPath/dp_train";#folder for all lmp jobs
 $lmp_setting{maxlabel}  = 1;#max number for labeling data files
 $lmp_setting{upper_bound}  = 0.2;#if dft has convergence problem, decrease it.
 $lmp_setting{lower_bound}  = 0.05;#lower bound for labelling. smaller value,0.01, for fewer initial structures
-$lmp_setting{out_freq}  = 100;#data file and deviation output freq
+$lmp_setting{out_freq}  = 200;#data file and deviation output freq
 $lmp_setting{ts}  = 0.001;#timestep size for unit metal
 
 my %scf_setting;

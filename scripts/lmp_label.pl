@@ -19,6 +19,8 @@ my $currentPath = $ss_hr->{script_dir};# current path
 my $debug = $ss_hr->{debug};
 my $iter = "iter". sprintf("%03d",$ss_hr->{iter});
 my $trainNo = $ss_hr->{trainNo};#graph file number
+my $doDFT4dpgen = $ss_hr->{doDFT4dpgen};#
+    chomp $doDFT4dpgen;
 my $out_freq = $ls_hr->{out_freq};#graph deviation output every this step
 my $maxlabel = $ls_hr->{maxlabel};# max number for labelling of a thermostate
 #upper and lower bounds for labelling
@@ -160,6 +162,8 @@ while ($whileCounter <= 5000 and $Counter != $lmpNo ){
 }#while loop
 my $min = $elapsed/(60.);
 print "****Elapsed times for all lmp jobs done: $min min.\n\n";
+#$elapsed = $elapsed/60.;
+#print "#End of lmp label while loop after $elapsed min at $iter\n\n";
 
 ### do labeling
 my %label;# key: folder name, value: array to keep labelled cfg filenames
@@ -194,6 +198,16 @@ for my $f (@lmpFolders){#loop over all lmp folders with different thermostate
         print "***no labelled structures in $f at iteration $ss_hr->{iter}\n";
     }
 }
+
+#print "\$doDFT4dpgen: $doDFT4dpgen\n";
+if($doDFT4dpgen eq "no"){#do not do dft for labelled cfg now
+    print "\$doDFT4dpgen: $doDFT4dpgen\n";
+    print "cp  $doDFT4dpgen\n";
+    `rm -rf $mainPath/all_cfgs/$iter`;
+    `mkdir -p $mainPath/all_cfgs/$iter`;
+    `cp -r $mainPath/lmp_label/* $mainPath/all_cfgs/$iter`;
+}
+
 my @labelled_dir = `find $mainPath/lmp_label -maxdepth 2 -mindepth 2 -type d -name "labelled"`;
 chomp @labelled_dir;
 if(@labelled_dir){#something has been labelled!
@@ -202,8 +216,6 @@ if(@labelled_dir){#something has been labelled!
 else{#nothing was labelled
     return 0;
 }
-$elapsed = $elapsed/60.;
-print "#End of lmp label while loop after $elapsed min at $iter\n\n";
 
 }# end sub
 1;

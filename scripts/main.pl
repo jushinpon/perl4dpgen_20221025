@@ -37,6 +37,12 @@ my $jobtype = $system_setting{jobtype};
 my $currentPath = $system_setting{script_dir};
 my $mainPath = $system_setting{main_dir};# main path of dpgen folder
 my $useFormationEnergy = $system_setting{useFormationEnergy};
+my $doDFT4dpgen = $system_setting{doDFT4dpgen};#if no, collect all cfg files for DFT
+if($doDFT4dpgen eq "no"){
+    `rm -rf $mainPath/all_cfgs`;
+    `mkdir $mainPath/all_cfgs`;
+}
+
 #&DFT_SCF(\%system_setting,\%scf_setting,\(0..1));
 #+++++++++++
 #my $it = 0;
@@ -197,7 +203,7 @@ for my $in (@QE_in){
         $coords4data .= "$temp\n";      
     }
     chomp $coords4data;
-    print "$coords4data\n";
+    #print "$coords4data\n";
 #    die;
 # modify data file
 
@@ -432,6 +438,9 @@ for my $iter ($begIter..$#iteration){
     die "Only initial training is done! (\$initial_trainOnly = \"yes\")\n" if($initial_trainOnly eq "yes");
 #print "\$initial_trainOnly:$initial_trainOnly\n";
 #begin DFT SCF for all labelled structures by lmp
+##########################
+ if($doDFT4dpgen eq "yes"){
+
     print "\n#Doing DFT_SCF at iteration $iter\n";
     my $convergedNo = &DFT_SCF(\%system_setting,\%scf_setting,\@{$iteration[$iter]});#do DFT scf for npy files
     print "#final convergedNo after DFT_SCF: $convergedNo\n";    
@@ -478,12 +487,19 @@ for my $iter ($begIter..$#iteration){
         `mkdir -p $mainPath/all_npy/$it/$str`;
         #print "$str $npy_setting{npyout_dir}\n";    
         $npy_setting{dftsout_dir}  = "$mainPath/DFT_output/$str";
-        my @BE_all = `cat $npy_setting{inistr_dir}/dpE2expE.dat|grep -v "#"|awk '{print \$3}'`;
-        die "no dpE2expE.dat in $npy_setting{inistr_dir}\n" unless (@BE_all);
-        chomp @BE_all;
-        $npy_setting{dftBE} = $BE_all[0];
-        $npy_setting{expBE} = $BE_all[1];
-        &DFTout2npy_QE(\%system_setting,\%npy_setting);
+        if($useFormationEnergy eq "yes"){
+            my @BE_all = `cat $npy_setting{inistr_dir}/dpE2expE.dat|grep -v "#"|awk '{print \$3}'`;
+            die "no dpE2expE.dat in $npy_setting{inistr_dir}\n" unless (@BE_all);
+            chomp @BE_all;
+            $npy_setting{dftBE} = $BE_all[0];
+            $npy_setting{expBE} = $BE_all[1];
+            &DFTout2npy_QE(\%system_setting,\%npy_setting);
+        }
+        else{
+            $npy_setting{dftBE} = 0.0;#not used
+            $npy_setting{expBE} = 0.0;#not used
+            &DFTout2npy_QE(\%system_setting,\%npy_setting);#send settings for getting npy
+        }
     }#str loop
 # training on the all npy files (all_npy*)->all_npy00,all_npy01 from previous dpgen process
     my @allnpys = `find $mainPath/all_npy*  -type f -name "*.npy"`;
@@ -524,7 +540,13 @@ for my $iter ($begIter..$#iteration){
     print "making plots for checking training results for iteration $iter\n";
     #`rm -rf $mainPath/matplot/all_npy`;
     #`cp -R $mainPath/all_npy $mainPath/matplot`;
+
     &matplot(\%system_setting,\%dptrain_setting);
+    
+    }#if($doDFT4dpgen eq yes){
+
+# here for else
+
 }#iteration loop
 
 #final_dptrain:

@@ -43,7 +43,7 @@ variable yz equal (1.0+(2.0*v_rn-1.0)*0.02)*yz
 
 #change_box all x scale ${xscale} y scale ${yscale} z scale ${zscale} xy final ${xy} xz final ${xz} yz final ${yz} triclinic remap  units box
 #perturb a little (maximum of 0.05 A for each atom)
-#displace_atoms all random 0.05 0.05 0.05 ${seed_temp} units box
+displace_atoms all random 0.05 0.05 0.05 ${seed_temp} units box
 
 #mass_anchor
 mass 1 95.95 #

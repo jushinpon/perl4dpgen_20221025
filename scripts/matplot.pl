@@ -121,7 +121,7 @@ for (1..$trainNo){
         #the following for check pred. and ref. data distributions for energy, force, and virial 
         my $source = "$npydir4matplot/$make_plots[$_]"."_npy"; 
 
-        system("source activate deepmd-cpu;dp test -n 100000 -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $source -d ./temp.out;conda deactivate");
+        system("source activate deepmd-cpu;dp test -n 100000 -m $mainPath/dp_train/graph$temp/graph$temp.pb -s $source -d ./temp.out 2>&1 >/dev/null;conda deactivate");
 # get atom number for normalizing energy
         `cp  ./temp.e.out ../matplot_data/$make_plots[$_]-Oritemp.e_$iter-graph$temp.out`;#for raw data
         `cp  ./temp.f.out ../matplot_data/$make_plots[$_]-temp.f_$iter-graph$temp.out`;#for raw data

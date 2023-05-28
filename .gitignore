@@ -4,11 +4,14 @@ nohup.out
 /DFT_output
 /dp_train*
 /lmp_label
-/initial
+/initial*
 /matplot*
 /matplot_data*
-/standalone_dptrain
+/standalone_dptrain*
+/all_cfgs*
 *.txt
+*.out
+*.dat
 test*.pl
 *test.pl
 test*

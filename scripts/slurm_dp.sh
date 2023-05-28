@@ -4,8 +4,8 @@
 #SBATCH --job-name=dp01
 #SBATCH --nodes=1
 ##SBATCH --ntasks-per-node=8
-#SBATCH --partition=C24M64
-#SBATCH --ntasks-per-node=24
+#SBATCH --partition=debug
+#SBATCH --ntasks-per-node=12
 ##SBATCH --reservation=GPU_test
 ##SBATCH --exclude=node18,node20
 #SBATCH --gres=gpu:0 
