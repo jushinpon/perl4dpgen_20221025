@@ -17,10 +17,12 @@ chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 my $NVT4str = "yes";
-my @allNVTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
+my @allNVTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0",
+"Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0","Opt-rocksalt-Ag50Te50","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50","Opt-rocksalt-Ag25Ge13Mn13Te50","Opt-rocksalt-Ag25Ge25Te50");#("bcc_bulk");#,"fcc_bulk","hcp_bulk");for surface
 # should have the same names as in the initial folder
 my $NPT4str = "yes";
-my @allNPTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");
+my @allNPTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0",
+"Opt-rocksalt-Ag50Te50","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50","Opt-rocksalt-Ag25Ge13Mn13Te50","Opt-rocksalt-Ag25Ge25Te50");
 #my @allNPTstru = ("md-rocksalt-Ag20Ge10Mn10Sb10Te50_3d-05","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-03","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-04","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-02","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-04","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-03","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-04","md-rocksalt-Ag05Ge35Mn05Sb05Te50_3d-03","md-rocksalt-Ag05Ge05Mn05Sb35Te50","md-rocksalt-Ag05Ge05Mn35Sb05Te50","md-rocksalt-Ag06Ge06Mn34Sb06Te50","md-rocksalt-Ag06Ge34Mn06Sb06Te50","md-rocksalt-Ag08Ge08Mn08Sb29Te50","md-rocksalt-Ag08Ge08Mn29Sb08Te50","md-rocksalt-Ag08Ge29Mn08Sb08Te50","md-rocksalt-Ag09Ge09Mn09Sb25Te50","md-rocksalt-Ag09Ge09Mn25Sb09Te50","md-rocksalt-Ag09Ge25Mn09Sb09Te50","md-rocksalt-Ag10Ge10Mn10Sb20Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50_3d-03","md-rocksalt-Ag20Ge10Mn10Sb10Te50","md-rocksalt-Ag25Ge09Mn09Sb09Te50","md-rocksalt-Ag32Ge07Mn07Sb07Te50","md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");
 #!need use integer for the following pressures
 my @allPress = (0,1000,10000,100000);#unit:bar,the pressures your want to use for labelling
@@ -46,7 +48,7 @@ $system_setting{partition} = "debug";#for slurm sbatch file
 $system_setting{main_dir} = $mainPath;
 $system_setting{script_dir} = $currentPath;
 #$system_setting{mpi_dir} = #modify in the future
-$system_setting{trainNo} = 3;# training number at a time
+$system_setting{trainNo} = 4;# training number at a time
 $system_setting{iter} = 0;
 $system_setting{T_hi} = 2500;#the higest temperature for lammps (integer)
 $system_setting{T_lo} = 300;#the lowest temperature for lammps (integer)
@@ -61,7 +63,7 @@ $dptrain_setting{type_map} = [("Ag","Ge","Mn","Sb","Te")];# json template file
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{json_outdir} = "$mainPath/dp_train";
 $dptrain_setting{working_dir} = "$mainPath/dp_train";
-$dptrain_setting{trainstep} = 200000;#you may set a smaller train step for the first several dpgen processes
+$dptrain_setting{trainstep} = 500000;#you may set a smaller train step for the first several dpgen processes
 $dptrain_setting{compresstrainstep} = 80000;
 $dptrain_setting{final_trainstep} = 200000;
 $dptrain_setting{final_compresstrainstep} = 400000;
