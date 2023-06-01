@@ -73,6 +73,7 @@ export PATH=/opt/mpich-4.0.3/bin:\$PATH
 export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2018.0.128/linux/mkl/lib/intel64_lin:\$LD_LIBRARY_PATH
 
 $sbatch_para{mpiPath} $sbatch_para{pwPath} -in $basename.in
+rm -rf pwscf.save
 END_MESSAGE
     #chomp $here_doc;
     #print "$here_doc";
