@@ -31,8 +31,18 @@ if(-e "nolabel.dat"){
     map { s/^\s+|\s+$//g; } @nolabel;
 
     for my $n (@nolabel){#loop over folders with no labelled sub folder
+        unless (-e "$n/md.out"){
+            print "no md.out in $n. Skipped!\n";
+            next; 
+        }
         my @maxf = `grep -v '^[[:space:]]*\$' $n/md.out | grep -v step|awk '{print \$5}'`;
         map { s/^\s+|\s+$//g; } @maxf;
+       
+        my @temp = grep { $_ > $lowerbound}  @maxf; 
+        unless (@maxf){
+            print "max force deviation is lower than \$lowerbound ($lowerbound) in $n\n";
+            next; 
+        }
         my @step = `grep -v '^[[:space:]]*\$' $n/md.out | grep -v step|awk '{print \$1}'`;
         map { s/^\s+|\s+$//g; } @step;        
         my @maxsort = sort {$a <=> $b} @maxf;

@@ -38,6 +38,7 @@ my $currentPath = $system_setting{script_dir};
 my $mainPath = $system_setting{main_dir};# main path of dpgen folder
 my $useFormationEnergy = $system_setting{useFormationEnergy};
 my $doDFT4dpgen = $system_setting{doDFT4dpgen};#if no, collect all cfg files for DFT
+my $doiniTrain = $system_setting{doiniTrain};#if no, collect all cfg files for DFT
 if($doDFT4dpgen eq "no"){
     `rm -rf $mainPath/all_cfgs`;
     `mkdir $mainPath/all_cfgs`;
@@ -383,7 +384,8 @@ else{
 `mkdir -p $mainPath/matplot_data`;
 
 # training on all npy files in all_npy* folders
-print "#***Doing initial deepMD training\n";
+print "#***Doing initial deepMD training\n" if($doiniTrain eq "yes");
+print "#***Using Old dp models for labelling without doing initial deepMD training\n" if($doiniTrain eq "no");
 
 my @allnpys = `find $mainPath/all_npy*  -type f -name "*.npy"`;
 chomp @allnpys;
@@ -403,18 +405,20 @@ chomp @extraFolders;
 die "no npy files in  $mainPath/all_npy* folders\n" unless(@extraFolders);
 #
 $dptrain_setting{allnpy_dir} = [@extraFolders];
-$system_setting{iter} = "initial dp train";
-&dp_train(\%system_setting,\%dptrain_setting);
-#check whether all dp train ok
 my $trainNo = $system_setting{trainNo};
-for (1..$trainNo){
-    my $temp = sprintf("%02d",$_);
-    chomp $temp;
-    #$mainPath/dp_train/graph$temp/
-    my $dpcheck = `grep "finished training" $mainPath/dp_train/graph$temp/dp$temp.dpout`;
-    die " dp train failed for dp$temp.dpout! at initial training\n" unless($dpcheck);
-}
+if($doiniTrain eq "yes"){#if no, you must have old dp models
 
+    $system_setting{iter} = "initial dp train";
+    &dp_train(\%system_setting,\%dptrain_setting);
+    #check whether all dp train ok
+    for (1..$trainNo){
+        my $temp = sprintf("%02d",$_);
+        chomp $temp;
+        #$mainPath/dp_train/graph$temp/
+        my $dpcheck = `grep "finished training" $mainPath/dp_train/graph$temp/dp$temp.dpout`;
+        die " dp train failed for dp$temp.dpout! at initial training\n" unless($dpcheck);
+    }
+}
 #begin make plots for training results
 #`cp -R $mainPath/all_npy* $mainPath/matplot`;
 print "making plots for checking training results before iteration loop\n";

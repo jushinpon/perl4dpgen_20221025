@@ -37,6 +37,7 @@ my %system_setting;
 #$system_setting{QE_pot} = "/opt/QEpot/SSSP_precision.json";#"new";#check readme
 $system_setting{useFormationEnergy} = "no";#if "yes", you need to prepare dpE2expE.dat in each folder under ./initial
 $system_setting{doDFT4dpgen} = "no";#if "yes", you will do scf calculation and dp train for each iteration.
+$system_setting{doiniTrain} = "no";#if "no", you must have old dp models and will use them for label.
 $system_setting{QE_pot_json} = "/opt/QEpot/SSSP_efficiency.json";#"new";#check readme
 $system_setting{jobtype} = "new";#"new";#check readme
 $system_setting{begIter} = 0;#0 for $system_setting{jobtype} = "new" or "dpgen_again"

@@ -129,7 +129,7 @@ print "\n#Beginning lmp label while loop at $iter\n\n";
 my $whileCounter = 0;
 my $Counter = 0;
 my $elapsed;
-while ($whileCounter <= 5000 and $Counter != $lmpNo ){
+while ($whileCounter <= 180 and $Counter != $lmpNo ){
 	sleep(60);
     $whileCounter += 1;
 	$Counter = 0;
