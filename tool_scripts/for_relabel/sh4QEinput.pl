@@ -74,6 +74,7 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2018.0.128/linux/mkl/l
 
 $sbatch_para{mpiPath} $sbatch_para{pwPath} -in $basename.in
 rm -rf pwscf.save
+sleep 60
 END_MESSAGE
     #chomp $here_doc;
     #print "$here_doc";
