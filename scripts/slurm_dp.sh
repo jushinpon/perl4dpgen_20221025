@@ -26,5 +26,5 @@ dp freeze -o graph4.pb
 #dp compress -i graph.pb -o graph-compress.pb
 ##sed_anchor05
 #dp train input.json --init-frz-model graph-compress.pb
-
+sleep 60
 echo "Done" > train_done.txt

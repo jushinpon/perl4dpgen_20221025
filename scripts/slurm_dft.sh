@@ -15,4 +15,5 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2018.0.128/linux/mkl/l
 #mpiexec_anchor
 mpiexec /opt/QEGCC_MPICH4.0.3/bin/pw.x -in dft_script.in
 rm -rf pwscf.save
+sleep 60
 echo "Done" > dft_done.txt

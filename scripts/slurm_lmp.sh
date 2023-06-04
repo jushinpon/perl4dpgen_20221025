@@ -17,4 +17,5 @@ source activate deepmd-cpu
 #mpiexec_anchor
 #lmp -in lmp_script.in
 #mpi could make the node shutdown, but sed in lmp_label.pl will amend it.
+sleep 60
 echo "Done" > lmp_done.txt
