@@ -491,6 +491,7 @@ if($groupNo > 2){
 			`mv $npyout_dir/coord.raw$setID $npyout_dir/val/coord.raw `;
 			`mv $npyout_dir/energy.raw$setID $npyout_dir/val/energy.raw `;
 			`mv $npyout_dir/force.raw$setID $npyout_dir/val/force.raw `;
+			`mv $npyout_dir/virial.raw$setID $npyout_dir/val/virial.raw `;
 			`mv $npyout_dir/$npyset $npyout_dir/val/ `;
 		}
 	}

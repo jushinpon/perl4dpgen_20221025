@@ -1,7 +1,7 @@
 =b
-make qe input files for all strucutres in labelled folders.
-You need to use this script in the dir with all dpgen collections (in all_cfgs folder)
-perl ../tool_scripts/cfg2QEinput.pl 
+makenpy files for all sout files.
+Only good for scf.
+perl ../tool_scripts/makenpy4all.pl 
 =cut
 use warnings;
 use strict;
@@ -15,11 +15,22 @@ use lib '../scripts';#assign pm dir
 use elements;#all setting package
 use List::Util qw/shuffle/;
 
-my $set_No = 10;#How many raw data number to make a set
+my $set_No = 5;#How many raw data number to make a set
 my $currentPath = getcwd();# dir for all scripts
 chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
+
+#for QE convertion
+my $ry2eV = 13.605684958731;
+my $bohr2ang = 0.52917721067;
+my $bohr2ang3 = 0.14818471127;
+my $kbar2bar = 1000;#000.;
+my $kbar2evperang3 = 1.0/ (160.21766208*10.0);
+my $force_convert = $ry2eV / $bohr2ang;
+my $cal_type = "scf";#all considered qe output
+my $force_cri = 7;#criterion to filter proper sout files for training,1.5*your matplot range
+my $virial_cri = 15;#criterion to filter proper sout files for training,1.5*your matplot range
 
 my $forkNo = 1;#although we don't have so many cores, only for submitting jobs into slurm
 my $pm = Parallel::ForkManager->new("$forkNo");
@@ -30,8 +41,72 @@ for my $i (@oldraw){`rm -f $i`;}
 my @oldnpy = `find ./ -type f -name "*.npy" -exec readlink -f {} \\;`;
 for my $i (@oldnpy){`rm -f $i`;}
 
-my @allsout = `find ./ -type f -name "*.sout" -exec readlink -f {} \\;`;
-map { s/^\s+|\s+$//g; } @allsout;
+my @allsout_temp = `find ./ -type f -name "*.sout" -exec readlink -f {} \\;`;
+map { s/^\s+|\s+$//g; } @allsout_temp;
+my @allsout;
+my $total_file;
+my $good_file;
+for (@allsout_temp){
+	$total_file++;
+	my $natom1 = `grep 'number of atoms/cell' $_ |awk '{print \$NF+1}'`;
+	chomp $natom1;#atom number + 1 (for including space line in qe output)
+	my @forcetemp = `grep -A $natom1 "Forces acting on atoms (cartesian axes, Ry/au):" $_`;#`grep -A 3 "total   stress" $out[$id]`
+	my @force = grep {if(m/^.+force =\s+([-+]?\d+\.?\d+)\s+([-+]?\d+\.?\d+)\s+([-+]?\d+\.?\d+)/){
+			$_ = [$1*$force_convert,$2*$force_convert,$3*$force_convert];}} @forcetemp;
+	
+	my $index = 1;
+    for my $fr  (0..$#force){
+		my @temp = @{$force[$fr]};
+		map { s/^\s+|\s+$//g; } @temp;
+		for my $f (@temp){
+			if(abs($f) > $force_cri){
+				#print "####$_\n";
+				#print "The abs force of $fr + 1 atom is larger than $force_cri eV/A in $_\n";
+				#print "force: $f\n";
+				$index = 0;
+			}
+		} 
+	}# end of force evaluation
+
+	#begin virial evaluation
+    #unit-cell volume          =    1476.9024 (a.u.)^3
+
+	my $cellVol = `grep "unit-cell volume" $_|awk '{print \$4*$bohr2ang3}'`;
+    chomp $cellVol;
+	my $convert = $kbar2evperang3*$cellVol;
+	my @totalstress = `grep -A 3 "total   stress" $_|grep -v "total   stress"|grep -v -- '--'|awk '{print \$(NF-2)*$convert " "\$(NF-1)*$convert " "\$NF*$convert}'`;
+	map { s/^\s+|\s+$//g; } @totalstress;
+	for my $st (@totalstress){
+		my @temp = split(/\s+/,$st);
+		for my $s (@temp){
+			chomp $s;
+			if(abs($s) > $virial_cri){
+				#print "The abs virial is larger than $virial_cri in $_\n";				
+				#print "stress: $s\n";
+				$index = 0;				
+			}
+		}
+
+	}
+	
+	my @jobdone = `grep "JOB DONE" $_`;
+	$index = 0 unless(@jobdone);#if no JOB DONE
+	my @scf_problem = `grep "convergence NOT achieved after" $_`;#|grep "convergence NOT achieved after"`;	
+	$index = 0 if(@scf_problem);
+	if($index){
+		$good_file++;
+		push @allsout,$_;
+	};
+}
+
+my $percent = ($good_file/$total_file)*100;
+
+print "\n\n** All sout No.: $total_file\n";
+print "** good sout No. under force and virial criterions: $good_file\n";
+print "** percentage under force and virial criterions for all sout files:". sprintf("%.2f",$percent)."%\n";
+sleep(3);
+#print "@allsout\n";
+#die;
 my %str;#get the same structure for key and make an array for collecting related sout files
 for my $s (@allsout){
     $s =~ m#.+/T\d+-P\d+-R\d+-(.+)/labelled/lmp_\d+.sout#;    
@@ -40,19 +115,12 @@ for my $s (@allsout){
 
 my @npy = ("energy","virial","force","coord","box");
 
-#for QE convertion
-my $ry2eV = 13.605684958731;
-my $bohr2ang = 0.52917721067;
-my $bohr2ang3 = 0.14818471127;
-my $kbar2bar = 1000;#000.;
-my $kbar2evperang3 = 1.0/ (160.21766208*10.0);
-my $force_convert = $ry2eV / $bohr2ang;
-my $cal_type = "scf";#all considered qe output
+
 `rm -rf $currentPath/all_npy_cfgs`;#remove old data
 `mkdir -p $currentPath/all_npy_cfgs/str`;
 
 for my $k (sort keys %str){#
-    print "***$k\n";
+    #print "***$k\n";
 	my $inistr_dir = "$mainPath/initial/$k";#type.raw in initial path
     #make npy path
 	my $npyout_dir = "$currentPath/all_npy_cfgs/str/$k";
@@ -139,7 +207,7 @@ for my $k (sort keys %str){#
 	    You need to do vc-relax (or relax) with a larger nstep value or drop this case by modifying all_setting.pm!\n" unless (@temp);
 	    	chomp @temp;
 	    	$temp[0] =~ s/^\s+|\s+$//;
-	    	print "Current calculation type: $cal_type, keyword: \"$temp[0]\" \n";
+	    	#print "Current calculation type: $cal_type, keyword: \"$temp[0]\" \n";
     
 	    }
 	    else{
@@ -395,7 +463,7 @@ for my $k (sort keys %str){#
 	#$set_No = 19;
 	my $groupNo;
 	$groupNo = floor($enNo/$set_No);
-	print "\n#####Warning!!!The set.XXX number is fewer than 4. Current $groupNo, and better to use a smaller number for \$set_No in all_setting.pm (ok for labeled data)\n" if ($groupNo <= 3);
+	#print "\n#####Warning!!!The set.XXX number is fewer than 4. Current $groupNo, and better to use a smaller number for \$set_No in all_setting.pm (ok for labeled data)\n" if ($groupNo <= 3);
 	for my $f (0..$#npy){
 		my @temp = `cat $npyout_dir/$npy[$f].raw`;
 		map { s/^\s+|\s+$//g; } @temp;
@@ -449,6 +517,7 @@ for my $k (sort keys %str){#
 				`mv $npyout_dir/coord.raw$setID $npyout_dir/val/coord.raw `;
 				`mv $npyout_dir/energy.raw$setID $npyout_dir/val/energy.raw `;
 				`mv $npyout_dir/force.raw$setID $npyout_dir/val/force.raw `;
+				`mv $npyout_dir/virial.raw$setID $npyout_dir/val/virial.raw `;
 				`mv $npyout_dir/$npyset $npyout_dir/val/ `;
 			}
 		}
@@ -470,3 +539,4 @@ for my $k (sort keys %str){#
 
 }#loop over a str hash key (collect all related sout files)
 
+print "\n#### All Done ####\n";
