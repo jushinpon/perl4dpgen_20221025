@@ -21,7 +21,7 @@ sub DFTout2npy_QE{
 my ($ss_hr,$npy_hr) = @_;#recive hash reference for setting
 my $mainPath = $ss_hr->{main_dir};# main path of dpgen folder
 my $currentPath = $ss_hr->{script_dir};
-my $set_No = $ss_hr->{set_No};
+my $ratio4val = $ss_hr->{ratio4val};#should assign dynamically
 my $useFormationEnergy = $ss_hr->{useFormationEnergy};
 my $dftBE_all = $npy_hr->{dftBE};
 my $expBE_be = $npy_hr->{expBE};
@@ -431,6 +431,8 @@ for my $f (1..$#npy){
 #$set_No = 19;
 my $groupNo;
 #if(!$enNo%$set_No){
+my $set_No = floor($ratio4val * $enNo);	
+if($set_No == 0){$set_No = 100000;}#let groupNo = 0 if enNo is not enough
 $groupNo = floor($enNo/$set_No);
 print "\n#####Warning!!!The set.XXX number is fewer than 4. Current $groupNo, and better to use a smaller number for \$set_No in all_setting.pm (ok for labeled data)\n" if ($groupNo <= 3);
 #}

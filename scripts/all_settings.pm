@@ -11,6 +11,19 @@ use strict;
 use warnings;
 use Cwd;
 use POSIX;
+###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! You need to set the following two only !!!!!!!!!
+my @DLP_elements = ("Sn","Pb","Te");#your DLP element sequence
+my @all_ini = `find ../initial -type f -name "*.sout"`;
+map { s/^\s+|\s+$//g; } @all_ini;
+my @folders;
+for (@all_ini){
+    my $temp = `dirname $_`;
+    $temp =~ s/^\s+|\s+$//g;
+    my $temp1 = `basename $temp`;
+    $temp1 =~ s/^\s+|\s+$//g;
+    push @folders,$temp1;
+}
+######
 
 my $currentPath = getcwd();# dir for all scripts
 chdir("..");
@@ -28,16 +41,13 @@ my @allNPTstru = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13
 my @allPress = (0,1000,10000,100000);#unit:bar,the pressures your want to use for labelling
 my @allStep = (1000,5000,10000);#time step number, should be larger than 500 (default output_freq)
 #prefixes of data and QE in files should be the same as the foldername !!!!
-my @allIniStr = ("Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T300_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T500_P0","Opt-rocksalt-Ag13Ge13Mn13Sb13Te50_T700_P0");
-#my @allIniStr =  ("md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");#for the fisrt dp train,should include all structures for labeling
-#my @allIniStr =  ("md-rocksalt-Ag20Ge10Mn10Sb10Te50_3d-05","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-03","md-rocksalt-Ag25Ge09Mn09Sb09Te50_3d-04","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-02","md-rocksalt-Ag07Ge07Mn07Sb32Te50_3d-04","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-03","md-rocksalt-Ag10Ge10Mn10Sb20Te50_3d-04","md-rocksalt-Ag05Ge35Mn05Sb05Te50_3d-03","md-rocksalt-Ag05Ge05Mn05Sb35Te50","md-rocksalt-Ag05Ge05Mn35Sb05Te50","md-rocksalt-Ag06Ge06Mn34Sb06Te50","md-rocksalt-Ag06Ge34Mn06Sb06Te50","md-rocksalt-Ag08Ge08Mn08Sb29Te50","md-rocksalt-Ag08Ge08Mn29Sb08Te50","md-rocksalt-Ag08Ge29Mn08Sb08Te50","md-rocksalt-Ag09Ge09Mn09Sb25Te50","md-rocksalt-Ag09Ge09Mn25Sb09Te50","md-rocksalt-Ag09Ge25Mn09Sb09Te50","md-rocksalt-Ag10Ge10Mn10Sb20Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50","md-rocksalt-Ag13Ge13Mn13Sb13Te50_3d-03","md-rocksalt-Ag20Ge10Mn10Sb10Te50","md-rocksalt-Ag25Ge09Mn09Sb09Te50","md-rocksalt-Ag32Ge07Mn07Sb07Te50","md-rocksalt-Ag34Ge06Mn06Sb06Te50","md-rocksalt-Ag35Ge05Mn05Sb05Te50");#for the fisrt dp train,should include all structures for labeling
-#my @allIniStr =  ("N2","N2SCF","N25","N154","N568584","N570747","N672233","N754514","N999498","N1080711","N1176403","B160","B161","B22046","B541848","B570316","B570602","B632401","B1193675","B1198656","B1202723","B1228790","BN344","BN534","BN984","BN1599","BN1639","BN2653","BN7991");#for the fisrt dp train,should include all structures for labeling
-#"bcc_bulk",
+my @allIniStr = @folders;
+
 my %system_setting;
 #$system_setting{QE_pot} = "/opt/QEpot/SSSP_precision.json";#"new";#check readme
 $system_setting{useFormationEnergy} = "no";#if "yes", you need to prepare dpE2expE.dat in each folder under ./initial
 $system_setting{doDFT4dpgen} = "no";#if "yes", you will do scf calculation and dp train for each iteration.
-$system_setting{doiniTrain} = "no";#if "no", you must have old dp models and will use them for label.
+$system_setting{doiniTrain} = "yes";#if "no", you must have old dp models and will use them for label.
 $system_setting{QE_pot_json} = "/opt/QEpot/SSSP_efficiency.json";#"new";#check readme
 $system_setting{jobtype} = "new";#"new";#check readme
 $system_setting{begIter} = 0;#0 for $system_setting{jobtype} = "new" or "dpgen_again"
@@ -57,10 +67,10 @@ $system_setting{T_lo} = 300;#the lowest temperature for lammps (integer)
 $system_setting{T_incNo} = 3;#total increment number from T_lo to T_hi,
 #the total temperature number considered is the above value + 1;
 $system_setting{T_No} = 2;#how many temperatures you want to consider within a temperature range, at lease 2
-$system_setting{set_No} = 50;#how many frames to be a group for set.xxx (frames > 5*set_No)
+$system_setting{ratio4val} = 0.2;#ratio of total data number to be valiation data
 
 my %dptrain_setting; 
-$dptrain_setting{type_map} = [("Ag","Ge","Mn","Sb","Te")];# json template file
+$dptrain_setting{type_map} = [@DLP_elements];# json template file
 $dptrain_setting{json_script} = "$currentPath/template.json";# json template file
 $dptrain_setting{json_outdir} = "$mainPath/dp_train";
 $dptrain_setting{working_dir} = "$mainPath/dp_train";

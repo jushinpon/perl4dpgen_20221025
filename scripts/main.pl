@@ -20,11 +20,12 @@ require './DFT_SCF.pl';
 require './lmp_label.pl';
 require './dp_train.pl';
 require './matplot.pl';
-#my $onlyfinal_dptrain = "no";#yes or no (not work currently)
-my $initial_trainOnly = "no";#if "yes", only conduct the initial training
+my $initial_trainOnly = "yes";#if "yes", only conduct the initial training
 my $initial_npyOnly = "no";#if "yes", only conduct the npy convertion for initial folder
 my $forkNo = 1;#modify in the future
 my $pm = Parallel::ForkManager->new("$forkNo");
+#make data files for all QE input files
+system("perl QEin2data.pl");
 #load all settings first
 my ($system_setting_hr,$dptrain_setting_hr,$npy_setting_hr,$lmp_setting_hr,$scf_setting_hr) = 
 &all_settings::setting_hash();
