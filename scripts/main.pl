@@ -427,7 +427,7 @@ print "making plots for checking training results before iteration loop\n";
 
 print "\n\n#****Main iteration begins****#\n";
 my $begIter = $system_setting{begIter};#assign correct beginning iteration number
-
+die;
 for my $iter ($begIter..$#iteration){
     $system_setting{iter} = $iter;
     my $it = "iter_". sprintf("%03d",$iter);#for mkdir

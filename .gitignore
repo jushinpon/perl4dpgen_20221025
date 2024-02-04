@@ -9,6 +9,7 @@ nohup.out
 /matplot_data*
 /standalone_dptrain*
 /all_cfgs*
+/DLP_test
 *.txt
 *.out
 *.dat
