@@ -20,7 +20,7 @@ map { s/^\s+|\s+$//g; } @datafile;
 die "No data files\n" unless(@datafile);
 
 #####DLP files
-my @pb = `find $parent_path/dp_train_v -type f -name "*.pb"`;#DLP files
+my @pb = `find $parent_path/dp_train -type f -name "*.pb"`;#DLP files
 map { s/^\s+|\s+$//g; } @pb;
 die "No DLP pb files\n" unless(@pb);
 
